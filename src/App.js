@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Register from "./components/Register/Register";
 
@@ -10,7 +9,7 @@ class App extends Component {
   handleRegister = async data => {
     try {
       const registerCall = await fetch(
-        "http://localhost:8000/users/registration",
+        "http://localhost:5000/users/registration",
         {
           method: "POST",
           body: JSON.stringify(data),
@@ -20,9 +19,8 @@ class App extends Component {
           }
         }
       );
-
       const response = await registerCall.json();
-      console.log(response, "from the flask server on localhost:8000");
+      console.log(response, "from the flask server on localhost:5000");
     } catch (err) {
       console.log(err);
     }

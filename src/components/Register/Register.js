@@ -35,6 +35,12 @@ class Register extends Component {
           <br />
         </label>
         <label>
+          Primary language:
+          <input type="text" name="primaryLanguage" onChange={this.handleChange} />
+          <br />
+          {/* Need to make into a drop down options like "en - English" so we can preset the language */}
+        </label>
+        <label>
           password:
           <input type="text" name="password" onChange={this.handleChange} />
           <br />
