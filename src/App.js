@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Register from "./components/Register/Register";
+import Translate from "./components/Translate/Translate"
 
 class App extends Component {
   // componentDidMount() {
@@ -43,6 +44,7 @@ class App extends Component {
     return (
       <div className="App">
         <Register handleRegister={this.handleRegister} />
+        <Translate />
       </div>
     );
   }
