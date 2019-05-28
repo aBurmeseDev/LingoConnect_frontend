@@ -5,6 +5,7 @@ import * as routes from "./components/constants/routes";
 import Register from "./components/Register/Register";
 import Translate from "./components/Translate/Translate";
 import User from "./components/User/User";
+import AppNavBar from "./components/AppNavbar/AppNavbar";
 // import Login from "./components/Login/Login";
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <AppNavBar />
         <BrowserRouter>
           <Switch>
             <Route
