@@ -39,6 +39,7 @@ class Translate extends Component {
     };
     render() { 
         // onchange this.setstate to api key inputs
+        console.log(process.env)
         return (
             <> 
                 <form onSubmit={this.handleSubmit}>
