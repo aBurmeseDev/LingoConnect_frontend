@@ -38,6 +38,9 @@ class App extends Component {
       );
       const response = await registerCall.json();
       console.log(response, "from the flask server on localhost:5000");
+      this.setState({
+        showModal: false
+      })
     } catch (err) {
       console.log(err);
     }
