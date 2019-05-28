@@ -242,7 +242,6 @@ class Translate extends Component {
                             <option value="ja">Japanese</option>
                         </select>
                         <br />
-                    {/* Need to make into a drop down options like "en - English" so we can preset the language */}
                     </label>
                     <button type="submit">Translate!</button>
                 </form>
