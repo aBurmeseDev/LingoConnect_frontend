@@ -3,15 +3,19 @@ import "./App.css";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import * as routes from "./components/constants/routes";
 import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
 import Translate from "./components/Translate/Translate";
 import User from "./components/User/User";
 import AppNavBar from "./components/AppNavbar/AppNavbar";
+
 // import Login from "./components/Login/Login";
 
 class App extends Component {
-  // componentDidMount() {
-  //   this.getDogs();
-  // }
+  state = {
+    loginMessage: null,
+    registerMessage: null,
+    currentUser: null
+  };
   handleRegister = async data => {
     try {
       const registerCall = await fetch(
@@ -26,7 +30,33 @@ class App extends Component {
         }
       );
       const response = await registerCall.json();
+
       console.log(response, "from the flask server on localhost:5000");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  handleLogin = async data => {
+    try {
+      const loginCall = await fetch("http://localhost:5000/users/login", {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const response = await loginCall.json();
+      this.setState({
+        loginMessage: response.message
+      });
+      if (response.message === "success") {
+        this.setState({
+          currentUser: response.user
+        });
+      }
+      console.log(response.user);
+      console.log(response.message, "from the flask server on localhost:5000");
     } catch (err) {
       console.log(err);
     }
@@ -54,8 +84,18 @@ class App extends Component {
             <Route
               exact
               path={routes.REGISTER}
-              handleRegister={this.handleRegister}
-              render={() => <Register />}
+              render={() => <Register handleRegister={this.handleRegister} />}
+            />
+            <Route
+              exact
+              path={routes.LOGIN}
+              handleLogin={this.handleLogin}
+              render={() => (
+                <Login
+                  handleLogin={this.handleLogin}
+                  loginMessage={this.state.loginMessage}
+                />
+              )}
             />
             <Route exact path={routes.TRANSLATE} render={() => <Translate />} />
             <Route exact path={routes.USER} render={() => <User />} />

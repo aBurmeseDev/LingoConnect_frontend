@@ -22,7 +22,7 @@ class Register extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Username:
+          username:
           <input type="text" name="username" onChange={this.handleChange} />
           <br />
         </label>
