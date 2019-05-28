@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -30,4 +30,22 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* Search input */
+input {
+  display: block;
+  text-align: center;
+  /* border-bottom-color: rgb(255, 255, 255) !important; */
+}
+
+label {
+  margin-top: 5rem;
+  display: block;
+  text-align: center;
+  line-height: 100%;
+}
+button {
+  display: block !important;
+  margin: auto !important;
 }

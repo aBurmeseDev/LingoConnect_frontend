@@ -39,22 +39,25 @@ class Register extends Component {
                 justifyContent: "center",
                 alignItems: "center",
                 backgroundColor: "rgba(0,0,0,0.3)"
-              }}>
-            <div 
-                style={{
-                    padding: 20,
-                    background: "#fff",
-                    borderRadius: "2px",
-                    display: "inline-block",
-                    minHeight: "300px",
-                    margin: "1rem",
-                    position: "relative",
-                    minWidth: "300px",
-                    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-                    justifySelf: "center"
-                  }}
-            >
+							}}	
+							>
+              <div style={{
+							padding: 20,
+							background: "#fff",
+							borderRadius: "2px",
+							display: "inline-block",
+							minHeight: "300px",
+							margin: "1rem",
+							position: "relative",
+							minWidth: "300px",
+							boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+							justifySelf: "center",
+							zIndex: 1,
+						}}
+					
+          >
             <form onSubmit={this.handleSubmit}>
+								<span onClick={this.props.closeModal} style={{cursor: "pointer"}}>x</span>
                 <label>
                     Username:
                     <input type="text" name="username" onChange={this.handleChange} />
@@ -72,12 +75,12 @@ class Register extends Component {
                 {/* Need to make into a drop down options like "en - English" so we can preset the language */}
                 </label>
                 <label>
-                    password:
+                    Password:
                     <input type="text" name="password" onChange={this.handleChange} />
                     <br />
                 </label>
                 <label>
-                    verify_password:
+                    Verify Password:
                     <input
                         type="text"
                         name="verify_password"
