@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
-import * as routes from "./components/constants/routes";
+import { Switch, Route } from "react-router-dom";
+
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Translate from "./components/Translate/Translate";
@@ -9,13 +9,26 @@ import User from "./components/User/User";
 import AppNavBar from "./components/AppNavbar/AppNavbar";
 
 // import Login from "./components/Login/Login";
+import * as routes from "./components/constants/routes";
 
 class App extends Component {
+  
+
   state = {
     loginMessage: null,
     registerMessage: null,
-    currentUser: null
+    currentUser: null,
+    showModal: false
   };
+    handleRegModal = () => 
+    this.setState({ 
+      showModal: true 
+    });
+  handleCloseModal = () => 
+    this.setState({ 
+      showModal: false 
+    });
+
   handleRegister = async data => {
     try {
       const registerCall = await fetch(
@@ -32,6 +45,9 @@ class App extends Component {
       const response = await registerCall.json();
 
       console.log(response, "from the flask server on localhost:5000");
+      this.setState({
+        showModal: false
+      })
     } catch (err) {
       console.log(err);
     }
@@ -78,13 +94,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppNavBar />
-        <BrowserRouter>
+        <AppNavBar regModal={this.handleRegModal} showModal={this.state.showModal} closeModal={this.handleCloseModal} handleRegister={this.handleRegister}/>
+      
           <Switch>
             <Route
               exact
               path={routes.REGISTER}
-              render={() => <Register handleRegister={this.handleRegister} />}
+              
+              render={() => this.state.showModal ? (
+                <Register onClose={this.handleCloseModal} />
+              ) : null}
             />
             <Route
               exact
@@ -100,7 +119,7 @@ class App extends Component {
             <Route exact path={routes.TRANSLATE} render={() => <Translate />} />
             <Route exact path={routes.USER} render={() => <User />} />
           </Switch>
-        </BrowserRouter>
+        
         {/* <Register handleRegister={this.handleRegister} />
         <Translate />
         <User /> */}
