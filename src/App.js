@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import * as routes from "./components/constants/routes";
 import Register from "./components/Register/Register";
-import Translate from "./components/Translate/Translate"
+import Translate from "./components/Translate/Translate";
+import User from "./components/User/User";
+// import Login from "./components/Login/Login";
 
 class App extends Component {
   // componentDidMount() {
@@ -43,8 +47,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Register handleRegister={this.handleRegister} />
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path={routes.REGISTER}
+              handleRegister={this.handleRegister}
+              render={() => <Register />}
+            />
+            <Route exact path={routes.TRANSLATE} render={() => <Translate />} />
+            <Route exact path={routes.USER} render={() => <User />} />
+          </Switch>
+        </BrowserRouter>
+        {/* <Register handleRegister={this.handleRegister} />
         <Translate />
+        <User /> */}
       </div>
     );
   }
