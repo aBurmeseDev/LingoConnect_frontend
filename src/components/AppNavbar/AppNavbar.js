@@ -1,8 +1,9 @@
 import React from "react";
-import * as routes from "../constants/routes";
-import { Navbar, NavItem, Modal, Button } from "react-materialize";
-import Login from "../Login/Login"
-import Register from "../Register/Register"
+// import * as routes from "../constants/routes";
+import { Navbar, NavItem, Modal } from "react-materialize";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+
 
 const AppNavbar = ({handleRegister, currentUser, handleLogin, loginMessage, doLogout}) => (
   <Navbar alignLinks="right">
@@ -27,7 +28,7 @@ const AppNavbar = ({handleRegister, currentUser, handleLogin, loginMessage, doLo
       </NavItem>]
     }
     
-    
+
   </Navbar>
 );
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom";
 
-const modalRoot = document.getElementById("modal-root")
+const modalRoot = document.getElementById("modal-root");
 
 class Register extends Component {
     state = {

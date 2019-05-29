@@ -31,21 +31,48 @@
     transform: rotate(360deg);
   }
 } */
+/* body {
+  background-color: rgb(126, 149, 248);
+} */
+/* Nav */
+nav {
+  background-color: #133062;
+}
 
 /* Search input */
+#translateForm {
+  background-color: rgba(200, 200, 200, 0.5);
+  padding: 0.01rem;
+  height: 100vh;
+}
 input {
   display: block;
   text-align: center;
   /* border-bottom-color: rgb(255, 255, 255) !important; */
 }
-
+TextInput {
+  display: block !important;
+  text-align: center !important;
+}
 label {
   margin-top: 5rem;
   display: block;
   text-align: center;
   line-height: 100%;
+  color: #133062;
+}
+::placeholder {
+  color: #444444;
 }
 button {
   display: block !important;
   margin: auto !important;
+}
+
+.dropdown-content li span {
+  text-align: center;
+}
+/* footer */
+footer {
+  background-color: #133062 !important;
 }
