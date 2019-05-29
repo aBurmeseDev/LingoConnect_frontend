@@ -18,7 +18,6 @@ class App extends Component {
     loginMessage: null,
     registerMessage: null,
     currentUser: null,
-    showModal: false
   };
   doLogout= async () => {
     await fetch("/login/logout", {
@@ -33,14 +32,6 @@ class App extends Component {
     })
     this.props.history.push(routes.LOGIN)
   }
-    handleRegModal = () => 
-    this.setState({ 
-      showModal: true 
-    });
-  handleCloseModal = () => 
-    this.setState({ 
-      showModal: false 
-    });
 
   handleRegister = async data => {
     try {
@@ -58,9 +49,6 @@ class App extends Component {
       const response = await registerCall.json();
 
       console.log(response, "from the flask server on localhost:5000");
-      this.setState({
-        showModal: false
-      })
     } catch (err) {
       console.log(err);
     }
@@ -106,20 +94,18 @@ class App extends Component {
   //   }
   // };
   render() {
-    const {showModal, loginMessage, currentUser} = this.state
+    const {loginMessage, currentUser} = this.state
     return (
       <div className="App">
-        <AppNavBar regModal={this.handleRegModal} handleLogin={this.handleLogin} showModal={showModal} closeModal={this.handleCloseModal} handleRegister={this.handleRegister} loginMessage={loginMessage} currentUser={currentUser} doLogout={this.doLogout} />
+        <AppNavBar handleLogin={this.handleLogin} handleRegister={this.handleRegister} loginMessage={loginMessage} currentUser={currentUser} doLogout={this.doLogout} />
       
           <Switch>
             <Route
               exact
               path={routes.REGISTER}
-              
-              render={() => showModal ? (
-                <Register onClose={this.handleCloseModal} />
-              ) : null}
-            />
+              render={() => 
+                <Register />}/>
+                
             <Route
               exact
               path={routes.LOGIN}
@@ -129,7 +115,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path={routes.TRANSLATE} render={() => <Translate />} />
+            <Route exact path={routes.TRANSLATE} render={() => <Translate currentUser={currentUser} />} />
             <Route exact path={routes.USER} render={() => <User />} />
           </Switch>
         

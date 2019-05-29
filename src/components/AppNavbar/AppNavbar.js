@@ -9,20 +9,21 @@ const AppNavbar = ({regModal, showModal, closeModal, handleRegister, currentUser
     
     {
       currentUser
-      ? [<NavItem>Account</NavItem>, <NavItem>Logout</NavItem>]
-      : [<div href="#modal1" className="modal-trigger">
+      ? [<NavItem key={3}>Account</NavItem>, <NavItem key={4}>Logout</NavItem>]
+      : [<div key={1}href="#modal1" className="modal-trigger">
           Login
         </div>,
-        <Modal id="modal1" header="">
-          <Login handleLogin={handleLogin} loginMessage={loginMessage} currentUser={currentUser}/>
+        <Modal id="modal1" header="" key={2}>
+          <Login handleLogin={handleLogin} loginMessage={loginMessage} currentUser={currentUser} key={5}/>
         </Modal>,
-        <NavItem>
-              <div onClick={regModal}>
+        <NavItem key={6}>
+              <div href="#modal2" className="modal-trigger" key={8}>
                 Register
               </div>
-              {showModal ? (
-              <Register closeModal={closeModal} handleRegister={handleRegister}/>
-              ) : null}
+              <Modal id="modal2" header="Register" key={9}>
+                <Register closeModal={closeModal} handleRegister={handleRegister} key={10}/>
+              </Modal>
+              
       </NavItem> ]
     }
     
