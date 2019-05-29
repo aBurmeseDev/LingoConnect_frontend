@@ -55,6 +55,12 @@ class App extends Component {
         }
       );
       const response = await registerCall.json();
+      if (response.message === "success") {
+        this.setState({
+          currentUser: response.user,
+          logged: response.logged
+        });
+      }
 
       console.log(response, "from the flask server on localhost:5000");
     } catch (err) {
@@ -145,7 +151,11 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path={routes.USER} render={() => <User />} />
+            <Route
+              exact
+              path={routes.USER}
+              render={() => <User currentUser={currentUser} />}
+            />
           </Switch>
         </main>
         <Footer copyrights="© 2019 Copyright LingoConnect">
@@ -156,7 +166,6 @@ class App extends Component {
           <div className="grey-text text-lighten-4">
             SEE PROJECT ON_
             <a
-              target="_blank"
               className="grey-text text-lighten-3"
               href="https://github.com/aBurmeseDev/LingoConnect_frontend"
             >

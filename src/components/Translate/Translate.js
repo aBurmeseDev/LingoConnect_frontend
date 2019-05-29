@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Select, TextInput, Icon } from "react-materialize";
+import { Button, Select, TextInput, Icon, Modal } from "react-materialize";
 
 class Translate extends Component {
   state = {
@@ -45,11 +45,11 @@ class Translate extends Component {
     // add close modal function
   };
   render() {
-      const { translation } = this.state
+    const { translation } = this.state;
     // onchange this.setstate to api key inputs
     return (
       <>
-        <h4 style={{ textAlign: "center" }}>{this.state.translation}</h4>
+        <h3 style={{ textAlign: "center" }}>{translation}</h3>
         <form onSubmit={this.handleSubmit} id="translateForm">
           <label>Choose your Language:</label>
           <Select
@@ -381,18 +381,26 @@ class Translate extends Component {
             <br />
             {/* Need to make into a drop down options like "en - English" so we can preset the language */}
           </label>
-          <Button type="submit" style={{ backgroundColor: "#133062" }}>
+          <Button
+            type="submit"
+            href="#modal3"
+            className="modal-trigger"
+            style={{ backgroundColor: "#133062" }}
+            onClick={this.handleSubmit}
+          >
             Translate!
           </Button>
+          <Modal id="modal3">
+            <h3 style={{ textAlign: "center" }}>{translation}</h3>
+          </Modal>
         </form>
-
-        <h2>{translation}</h2>
-        {
-            this.props.currentUser && translation !== "Translation"
-            ? <input type="button" onClick={console.log("clicked")}>Save</input>
-            : <h5>Translate and login in to save phrases!</h5>
-        }
-
+        {this.props.currentUser && translation !== "Translation" ? (
+          <input type="button" onClick={console.log("clicked")}>
+            Save
+          </input>
+        ) : (
+          <h5>Translate and login in to save phrases!</h5>
+        )}
       </>
     );
   }

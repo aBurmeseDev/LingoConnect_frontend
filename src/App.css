@@ -76,3 +76,9 @@ button {
 footer {
   background-color: #133062 !important;
 }
+
+/* User page */
+.user-info {
+  height: 100px;
+  margin: 0 auto;
+}

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 
+import Button from "react-materialize/lib/Button";
+
 class User extends Component {
-  state = {
-    user: {
-      username: "",
-      primaryLang: ""
-    }
-  };
   // componentDidMount() {
   //   this.doGetUser().then(({ user }) => this.setState({ user }));
   // }
@@ -24,8 +20,19 @@ class User extends Component {
     // const { username } = this.state.username;
     return (
       <div>
-        <h1>user page</h1>
-        {/* <h1>{username}</h1> */}
+        <main>
+          <div className="user-info">
+            <h5 style={{ textAlign: "center" }}>Edit Account</h5>
+            <h6 style={{ textAlign: "center" }}>
+              username:{" "}
+              {this.props.currentUser && this.props.currentUser.username}
+            </h6>
+            <Button>Edit name</Button> <Button>Delete account</Button>
+            <h6 style={{ textAlign: "center" }}>password:</h6>
+            <Button>Edit password</Button>
+          </div>
+          <div className="phrases" style={{ height: "100vh" }} />
+        </main>
       </div>
     );
   }

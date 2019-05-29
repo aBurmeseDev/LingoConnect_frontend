@@ -18,25 +18,28 @@ class Login extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h4 style={{ textAlign: "center" }}>Login</h4>
         <h6 style={{ textAlign: "center" }}>Welcome back.</h6>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          autoComplete="off"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
+        <label>
+          username:
+          <input
+            type="text"
+            name="username"
+            autoComplete="off"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+        </label>
         <br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          autoComplete="off"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
+        <label>
+          password:
+          <input
+            type="password"
+            name="password"
+            autoComplete="off"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+        </label>
         <span>{this.props.loginMessage}</span>
         <Button type="submit">Login</Button>
       </form>
