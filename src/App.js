@@ -16,9 +16,17 @@ class App extends Component {
   state = {
     loginMessage: null,
     registerMessage: null,
-    currentUser: null
+    currentUser: null,
+    data: null
   };
 
+  componentDidMount() {
+    this.handleGetPhrase().then(allData => {
+      this.setState({
+        data: allData
+      });
+    });
+  }
   doLogout = async () => {
     await fetch("/login/logout", {
       credentials: "include",
@@ -93,13 +101,13 @@ class App extends Component {
       console.log(err);
     }
   };
-  handleSavePhrase = async (data) => {
-    const { currentUser } = this.state 
+  handleSavePhrase = async data => {
+    const { currentUser } = this.state;
     let obj = {
       userId: currentUser.id,
       text: data.text,
       phrase: data.translation
-    }
+    };
     try {
       const savePhrase = await fetch("http://localhost:5000/phrases/create", {
         method: "POST",
@@ -115,7 +123,17 @@ class App extends Component {
       console.log(error);
     }
   };
-
+  handleGetPhrase = async () => {
+    try {
+      const getPhrase = await fetch("http://localhost:5000/phrases/create", {
+        credentials: "include"
+      });
+      const response = await getPhrase.json();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   render() {
     const { showModal, loginMessage, currentUser } = this.state;
     return (
