@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
@@ -20,6 +20,19 @@ class App extends Component {
     currentUser: null,
     showModal: false
   };
+  doLogout= async () => {
+    await fetch("/login/logout", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+      }
+    })
+    this.setState({
+      currentUser: null
+    })
+    this.props.history.push(routes.LOGIN)
+  }
     handleRegModal = () => 
     this.setState({ 
       showModal: true 
@@ -68,11 +81,12 @@ class App extends Component {
       });
       if (response.message === "success") {
         this.setState({
-          currentUser: response.user
+          currentUser: response.user,
+          logged: response.logged
         });
       }
       console.log(response.user);
-      console.log(response.message, "from the flask server on localhost:5000");
+      console.log(response.logged, "from the flask server on localhost:5000");
     } catch (err) {
       console.log(err);
     }
@@ -92,16 +106,17 @@ class App extends Component {
   //   }
   // };
   render() {
+    const {showModal, loginMessage, currentUser} = this.state
     return (
       <div className="App">
-        <AppNavBar regModal={this.handleRegModal} showModal={this.state.showModal} closeModal={this.handleCloseModal} handleRegister={this.handleRegister}/>
+        <AppNavBar regModal={this.handleRegModal} handleLogin={this.handleLogin} showModal={showModal} closeModal={this.handleCloseModal} handleRegister={this.handleRegister} loginMessage={loginMessage} currentUser={currentUser} doLogout={this.doLogout} />
       
           <Switch>
             <Route
               exact
               path={routes.REGISTER}
               
-              render={() => this.state.showModal ? (
+              render={() => showModal ? (
                 <Register onClose={this.handleCloseModal} />
               ) : null}
             />
@@ -111,8 +126,6 @@ class App extends Component {
               handleLogin={this.handleLogin}
               render={() => (
                 <Login
-                  handleLogin={this.handleLogin}
-                  loginMessage={this.state.loginMessage}
                 />
               )}
             />
@@ -128,4 +141,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
