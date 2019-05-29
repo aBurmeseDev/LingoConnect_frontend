@@ -17,14 +17,14 @@ class App extends Component {
     loginMessage: null,
     registerMessage: null,
     currentUser: null,
-    showModal: false
   };
-  doLogout = async () => {
-    await fetch("/login/logout", {
-      credentials: "include",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+
+  doLogout= async () => {
+    await fetch("http://localhost:5000/users/logout", {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
       }
     });
     this.setState({
@@ -40,6 +40,7 @@ class App extends Component {
     this.setState({
       showModal: false
     });
+
 
   handleRegister = async data => {
     try {
@@ -57,9 +58,6 @@ class App extends Component {
       const response = await registerCall.json();
 
       console.log(response, "from the flask server on localhost:5000");
-      this.setState({
-        showModal: false
-      });
     } catch (err) {
       console.log(err);
     }
@@ -90,20 +88,23 @@ class App extends Component {
       console.log(err);
     }
   };
-  // getDogs = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:8000/api/v1/dogs", {
-  //       credentials: "include"
-  //     });
+  handleSavePhrase = async data => {
+    try {
+      const savePhrase = await fetch("http://localhost:5000/phrases/create", {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const response = await savePhrase.json();
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  //     if (response.ok) {
-  //       const responseParsed = await response.json();
-  //       console.log(responseParsed);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   render() {
     const { showModal, loginMessage, currentUser } = this.state;
     return (
@@ -120,21 +121,26 @@ class App extends Component {
             doLogout={this.doLogout}
           />
 
+
           <Switch>
             <Route
               exact
               path={routes.REGISTER}
+
+                
+
               render={() =>
                 showModal ? <Register onClose={this.handleCloseModal} /> : null
               }
             />
+
             <Route
               exact
               path={routes.LOGIN}
               handleLogin={this.handleLogin}
               render={() => <Login />}
             />
-            <Route exact path={routes.TRANSLATE} render={() => <Translate />} />
+            <Route exact path={routes.TRANSLATE} render={() => <Translate currentUser={currentUser} handleSavePhrase={this.handleSavePhrase} />} />
             <Route exact path={routes.USER} render={() => <User />} />
           </Switch>
         </main>

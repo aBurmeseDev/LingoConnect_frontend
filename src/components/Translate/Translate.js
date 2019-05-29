@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import { Button, Select, TextInput, Icon } from "react-materialize";
+
 class Translate extends Component {
   state = {
     text: "",
@@ -43,6 +45,7 @@ class Translate extends Component {
     // add close modal function
   };
   render() {
+      const { translation } = this.state
     // onchange this.setstate to api key inputs
     return (
       <>
@@ -382,6 +385,14 @@ class Translate extends Component {
             Translate!
           </Button>
         </form>
+
+        <h2>{translation}</h2>
+        {
+            this.props.currentUser && translation !== "Translation"
+            ? <input type="button" onClick={console.log("clicked")}>Save</input>
+            : <h5>Translate and login in to save phrases!</h5>
+        }
+
       </>
     );
   }
