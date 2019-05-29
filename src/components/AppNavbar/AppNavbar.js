@@ -1,6 +1,8 @@
 import React from "react";
 // import * as routes from "../constants/routes";
-import { Navbar, NavItem, Modal } from "react-materialize";
+import { Navbar, Modal, NavItem } from "react-materialize";
+import { NavLink } from "react-router-dom";
+import * as routes from "../constants/routes";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 
@@ -14,31 +16,34 @@ const AppNavbar = ({
   <Navbar alignLinks="right">
     {currentUser
       ? [
-          <NavItem key={3} href="/user">
+          <NavLink key={3} to={routes.USER}>
             Account
-          </NavItem>,
-          <NavItem key={4} onClick={doLogout}>
+          </NavLink>,
+          <NavLink key={4} onClick={doLogout}>
             Logout
-          </NavItem>
+          </NavLink>
         ]
       : [
-          <div key={1} href="#modal1" className="modal-trigger">
-            Login
-          </div>,
-          <Modal id="modal1" header="" key={2}>
-            <Login
-              handleLogin={handleLogin}
-              loginMessage={loginMessage}
-              currentUser={currentUser}
-              key={5}
-            />
-          </Modal>,
-          <NavItem key={6}>
-            <div href="#modal2" className="modal-trigger" key={8}>
+          <NavItem key={1}>
+            <div key={2} href="#modal1" className="modal-trigger">
+              Login
+            </div>
+            ,
+            <Modal id="modal1" header="" key={10}>
+              <Login
+                handleLogin={handleLogin}
+                loginMessage={loginMessage}
+                currentUser={currentUser}
+                key={11}
+              />
+            </Modal>
+          </NavItem>,
+          <NavItem key={5}>
+            <div href="#modal2" className="modal-trigger" key={6}>
               Register
             </div>
-            <Modal id="modal2" header="Register" key={9}>
-              <Register handleRegister={handleRegister} key={10} />
+            <Modal id="modal2" header="Register" key={7}>
+              <Register handleRegister={handleRegister} key={8} />
             </Modal>
           </NavItem>
         ]}
