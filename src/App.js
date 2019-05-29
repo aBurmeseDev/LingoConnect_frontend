@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route, withRouter } from "react-router-dom";
+import { Footer } from "react-materialize";
 
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
@@ -12,34 +13,32 @@ import AppNavBar from "./components/AppNavbar/AppNavbar";
 import * as routes from "./components/constants/routes";
 
 class App extends Component {
-  
-
   state = {
     loginMessage: null,
     registerMessage: null,
     currentUser: null,
     showModal: false
   };
-  doLogout= async () => {
+  doLogout = async () => {
     await fetch("/login/logout", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       }
-    })
+    });
     this.setState({
       currentUser: null
-    })
-    this.props.history.push(routes.LOGIN)
-  }
-    handleRegModal = () => 
-    this.setState({ 
-      showModal: true 
     });
-  handleCloseModal = () => 
-    this.setState({ 
-      showModal: false 
+    this.props.history.push(routes.LOGIN);
+  };
+  handleRegModal = () =>
+    this.setState({
+      showModal: true
+    });
+  handleCloseModal = () =>
+    this.setState({
+      showModal: false
     });
 
   handleRegister = async data => {
@@ -60,7 +59,7 @@ class App extends Component {
       console.log(response, "from the flask server on localhost:5000");
       this.setState({
         showModal: false
-      })
+      });
     } catch (err) {
       console.log(err);
     }
@@ -106,36 +105,55 @@ class App extends Component {
   //   }
   // };
   render() {
-    const {showModal, loginMessage, currentUser} = this.state
+    const { showModal, loginMessage, currentUser } = this.state;
     return (
       <div className="App">
-        <AppNavBar regModal={this.handleRegModal} handleLogin={this.handleLogin} showModal={showModal} closeModal={this.handleCloseModal} handleRegister={this.handleRegister} loginMessage={loginMessage} currentUser={currentUser} doLogout={this.doLogout} />
-      
+        <main>
+          <AppNavBar
+            regModal={this.handleRegModal}
+            handleLogin={this.handleLogin}
+            showModal={showModal}
+            closeModal={this.handleCloseModal}
+            handleRegister={this.handleRegister}
+            loginMessage={loginMessage}
+            currentUser={currentUser}
+            doLogout={this.doLogout}
+          />
+
           <Switch>
             <Route
               exact
               path={routes.REGISTER}
-              
-              render={() => showModal ? (
-                <Register onClose={this.handleCloseModal} />
-              ) : null}
+              render={() =>
+                showModal ? <Register onClose={this.handleCloseModal} /> : null
+              }
             />
             <Route
               exact
               path={routes.LOGIN}
               handleLogin={this.handleLogin}
-              render={() => (
-                <Login
-                />
-              )}
+              render={() => <Login />}
             />
             <Route exact path={routes.TRANSLATE} render={() => <Translate />} />
             <Route exact path={routes.USER} render={() => <User />} />
           </Switch>
-        
-        {/* <Register handleRegister={this.handleRegister} />
-        <Translate />
-        <User /> */}
+        </main>
+        <Footer copyrights="© 2019 Copyright LingoConnect">
+          <h5 className="white-text">
+            This app is powered by{" "}
+            <a href="http://translate.yandex.com/">Yandex.Translate</a>
+          </h5>
+          <div className="grey-text text-lighten-4">
+            SEE PROJECT ON_
+            <a
+              target="_blank"
+              className="grey-text text-lighten-3"
+              href="https://github.com/aBurmeseDev/LingoConnect_frontend"
+            >
+              <i class="fab fa-github fa-2x" />
+            </a>
+          </div>
+        </Footer>
       </div>
     );
   }

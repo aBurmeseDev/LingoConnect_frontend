@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Select, TextInput } from "react-materialize";
+import { Button, Select, TextInput, Icon } from "react-materialize";
 class Translate extends Component {
   state = {
     text: "",
@@ -46,9 +46,11 @@ class Translate extends Component {
     // onchange this.setstate to api key inputs
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <h4 style={{ textAlign: "center" }}>{this.state.translation}</h4>
+        <form onSubmit={this.handleSubmit} id="translateForm">
+          <label>Choose your Language:</label>
           <Select
-            label="Choose your Language"
+            // label="Choose your Language"
             // style={{ display: "block" }}
             name="setLanguage"
             onChange={this.handleChange}
@@ -258,16 +260,19 @@ class Translate extends Component {
           {/* </Select>
             <br />
           </label> */}
-          <label>
-            Text:
-            <TextInput
-              type="text"
-              name="text"
-              onChange={this.handleChange}
-              placeholder="How do you say?"
-            />
-            <br />
+          <label style={{ color: "black" }}>
+            <Icon small>edit</Icon>
           </label>
+
+          <TextInput
+            type="text"
+            name="text"
+            onChange={this.handleChange}
+            placeholder="How do you say?"
+            autoComplete="off"
+          />
+          <br />
+
           <label>
             Translate to:
             <Select
@@ -373,9 +378,10 @@ class Translate extends Component {
             <br />
             {/* Need to make into a drop down options like "en - English" so we can preset the language */}
           </label>
-          <Button type="submit">Translate!</Button>
+          <Button type="submit" style={{ backgroundColor: "#133062" }}>
+            Translate!
+          </Button>
         </form>
-        <h2>{this.state.translation}</h2>
       </>
     );
   }
