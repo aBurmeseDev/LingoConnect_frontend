@@ -16,21 +16,21 @@ class App extends Component {
   state = {
     loginMessage: null,
     registerMessage: null,
-    currentUser: null,
+    currentUser: null
   };
 
-  doLogout= async () => {
-    await fetch("http://localhost:5000/users/logout", {
-    credentials: "include",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
+  doLogout = async () => {
+    await fetch("/login/logout", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       }
     });
     this.setState({
       currentUser: null
     });
-    this.props.history.push(routes.LOGIN);
+    this.props.history.push(routes.ROOT);
   };
   handleRegModal = () =>
     this.setState({
@@ -40,7 +40,6 @@ class App extends Component {
     this.setState({
       showModal: false
     });
-
 
   handleRegister = async data => {
     try {
@@ -97,13 +96,13 @@ class App extends Component {
         headers: {
           "Content-Type": "application/json"
         }
-      })
+      });
       const response = await savePhrase.json();
-      console.log(response)
+      console.log(response);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   render() {
     const { showModal, loginMessage, currentUser } = this.state;
@@ -121,14 +120,10 @@ class App extends Component {
             doLogout={this.doLogout}
           />
 
-
           <Switch>
             <Route
               exact
               path={routes.REGISTER}
-
-                
-
               render={() =>
                 showModal ? <Register onClose={this.handleCloseModal} /> : null
               }
@@ -140,7 +135,16 @@ class App extends Component {
               handleLogin={this.handleLogin}
               render={() => <Login />}
             />
-            <Route exact path={routes.TRANSLATE} render={() => <Translate currentUser={currentUser} handleSavePhrase={this.handleSavePhrase} />} />
+            <Route
+              exact
+              path={routes.TRANSLATE}
+              render={() => (
+                <Translate
+                  currentUser={currentUser}
+                  handleSavePhrase={this.handleSavePhrase}
+                />
+              )}
+            />
             <Route exact path={routes.USER} render={() => <User />} />
           </Switch>
         </main>
