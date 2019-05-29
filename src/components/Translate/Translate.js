@@ -381,8 +381,8 @@ class Translate extends Component {
         <h2>{translation}</h2>
         {
             this.props.currentUser && translation !== "Translation"
-            ? <Button>Save</Button>
-            : <h5>Login in to save phrases!</h5>
+            ? <input type="button" onClick={console.log("clicked")}>Save</input>
+            : <h5>Translate and login in to save phrases!</h5>
         }
       </>
     );

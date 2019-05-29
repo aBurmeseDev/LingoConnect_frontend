@@ -20,7 +20,7 @@ class App extends Component {
     currentUser: null,
   };
   doLogout= async () => {
-    await fetch("/login/logout", {
+    await fetch("http://localhost:5000/users/logout", {
     credentials: "include",
     method: "POST",
     headers: {
@@ -79,20 +79,23 @@ class App extends Component {
       console.log(err);
     }
   };
-  // getDogs = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:8000/api/v1/dogs", {
-  //       credentials: "include"
-  //     });
+  handleSavePhrase = async data => {
+    try {
+      const savePhrase = await fetch("http://localhost:5000/phrases/create", {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const response = await savePhrase.json();
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  //     if (response.ok) {
-  //       const responseParsed = await response.json();
-  //       console.log(responseParsed);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   render() {
     const {loginMessage, currentUser} = this.state
     return (
@@ -115,7 +118,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path={routes.TRANSLATE} render={() => <Translate currentUser={currentUser} />} />
+            <Route exact path={routes.TRANSLATE} render={() => <Translate currentUser={currentUser} handleSavePhrase={this.handleSavePhrase} />} />
             <Route exact path={routes.USER} render={() => <User />} />
           </Switch>
         

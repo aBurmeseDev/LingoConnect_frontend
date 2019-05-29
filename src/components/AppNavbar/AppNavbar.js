@@ -4,7 +4,7 @@ import { Navbar, NavItem, Modal, Button } from "react-materialize";
 import Login from "../Login/Login"
 import Register from "../Register/Register"
 
-const AppNavbar = ({regModal, showModal, closeModal, handleRegister, currentUser, handleLogin, loginMessage, doLogout}) => (
+const AppNavbar = ({handleRegister, currentUser, handleLogin, loginMessage, doLogout}) => (
   <Navbar alignLinks="right">
     
     {
@@ -21,10 +21,10 @@ const AppNavbar = ({regModal, showModal, closeModal, handleRegister, currentUser
                 Register
               </div>
               <Modal id="modal2" header="Register" key={9}>
-                <Register closeModal={closeModal} handleRegister={handleRegister} key={10}/>
+                <Register handleRegister={handleRegister} key={10}/>
               </Modal>
               
-      </NavItem> ]
+      </NavItem>]
     }
     
     
