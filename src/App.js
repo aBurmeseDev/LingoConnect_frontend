@@ -87,11 +87,17 @@ class App extends Component {
       console.log(err);
     }
   };
-  handleSavePhrase = async data => {
+  handleSavePhrase = async (data) => {
+    const { currentUser } = this.state 
+    let obj = {
+      userId: currentUser.id,
+      text: data.text,
+      phrase: data.translation
+    }
     try {
       const savePhrase = await fetch("http://localhost:5000/phrases/create", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(obj),
         credentials: "include",
         headers: {
           "Content-Type": "application/json"
@@ -160,7 +166,7 @@ class App extends Component {
               className="grey-text text-lighten-3"
               href="https://github.com/aBurmeseDev/LingoConnect_frontend"
             >
-              <i class="fab fa-github fa-2x" />
+              <i className="fab fa-github fa-2x" />
             </a>
           </div>
         </Footer>
