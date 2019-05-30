@@ -37,17 +37,16 @@ class App extends Component {
           "Content-Type": "application/json"
         }
       });
-      const response = await logout.json() 
+      const response = await logout.json();
       this.props.history.push(routes.ROOT);
       localStorage.clear()
       this.setState({
         currentUser: {},
         logged: response.logged,
         loginMessage: response.message
-
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -109,7 +108,7 @@ class App extends Component {
   };
   handleSavePhrase = async data => {
     const { currentUser } = this.state;
-    console.log(data)
+    console.log(data);
     let obj = {
       userId: currentUser.id,
       text: data.text,
@@ -133,9 +132,10 @@ class App extends Component {
     }
   };
   render() {
-    const { showModal, loginMessage, currentUser} = this.state;
+    const { showModal, loginMessage, currentUser } = this.state;
     return (
       <div className="App">
+        <header />
         <main>
           <AppNavBar
             regModal={this.handleRegModal}
