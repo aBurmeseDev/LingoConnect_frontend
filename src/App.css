@@ -75,6 +75,7 @@ label {
 button {
   display: block !important;
   margin: auto !important;
+  background-color: #133062 !important;
 }
 
 .dropdown-content li span {

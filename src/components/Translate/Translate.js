@@ -343,6 +343,27 @@ class Translate extends Component {
             )}
           </Modal>
         </form>
+        <div className="row">
+          <h5 style={{ textAlign: "center" }}>Creators</h5>
+          <div className="col s5" style={{ textAlign: "center" }}>
+            <h6>Joshua Ablan</h6>
+            <a style={{ paddingRight: "0.5rem" }}>
+              <i class="fab fa-linkedin fa-2x" />
+            </a>
+            <a>
+              <i class="fab fa-github-square fa-2x" />
+            </a>
+          </div>
+          <div className="col s5" style={{ textAlign: "center" }}>
+            <h6>John Lwin</h6>
+            <a style={{ paddingRight: "0.5rem" }}>
+              <i class="fab fa-linkedin fa-2x" />
+            </a>
+            <a>
+              <i class="fab fa-github-square fa-2x" />
+            </a>
+          </div>
+        </div>
       </>
     );
   }

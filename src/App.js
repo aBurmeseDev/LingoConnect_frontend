@@ -176,12 +176,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => (
-                <User
-                  currentUser={currentUser}
-                  handleSubmit={this.handleSubmit}
-                />
-              )}
+              render={() => <User currentUser={currentUser} />}
             />
           </Switch>
         </main>
