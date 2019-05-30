@@ -19,16 +19,15 @@ const AppNavbar = ({
           <NavLink key={3} to={`${routes.USER}/${currentUser.id}`}>
             Account
           </NavLink>,
-          <NavLink key={4} onClick={doLogout}>
+          <NavItem key={4} onClick={doLogout}>
             Logout
-          </NavLink>
+          </NavItem>
         ]
       : [
           <NavItem key={1}>
             <div key={2} href="#modal1" className="modal-trigger">
               Login
             </div>
-            ,
             <Modal id="modal1" header="" key={10}>
               <Login
                 handleLogin={handleLogin}
