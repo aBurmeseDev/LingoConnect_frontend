@@ -16,6 +16,9 @@ const AppNavbar = ({
   <Navbar alignLinks="right">
     {currentUser
       ? [
+          <NavLink key={15} to={routes.ROOT} style={{ textAlign: "center" }}>
+            LingoConnect
+          </NavLink>,
           <NavLink key={3} to={`${routes.USER}/${currentUser.id}`}>
             Account
           </NavLink>,

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Button from "react-materialize/lib/Button";
+import { Button } from "react-materialize";
 
 class User extends Component {
   // componentDidMount() {
@@ -32,20 +32,22 @@ class User extends Component {
             <h6 style={{ textAlign: "center" }}>password:</h6>
             <Button>Edit password</Button>
           </div>
-          <div className="phrases" style={{ height: "100vh" }}>
+          <div style={{ height: "80vh", paddingTop: "3rem" }}>
             <ul>
-              {
-                this.props.data.map((phrase,i)=>
-                  this.props.currentUser.id === Number(phrase.userId) 
-                    && <li key={i}>
-                          Translated from: {phrase.setLanguage} <br/>
-                          Input: {phrase.text} <br/>
-                          Translated to: {phrase.transLanguage} <br/>
-                          Translation: {phrase.phrase} <br/>
-                      </li>  
-                  
-                )
-              }
+              {this.props.data.map(
+                (phrase, i) =>
+                  this.props.currentUser.id === Number(phrase.userId) && (
+                    <li
+                      key={i}
+                      style={{ textAlign: "center", paddingTop: "0.75rem" }}
+                    >
+                      Translated from: {phrase.setLanguage.toUpperCase()} <br />
+                      Input: {phrase.text} <br />
+                      Translated to: {phrase.transLanguage.toUpperCase()} <br />
+                      Translation: {phrase.phrase} <br />
+                    </li>
+                  )
+              )}
             </ul>
           </div>
         </main>
