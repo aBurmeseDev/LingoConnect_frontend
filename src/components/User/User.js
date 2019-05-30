@@ -3,22 +3,31 @@ import React, { Component } from "react";
 import { Button } from "react-materialize";
 
 class User extends Component {
-  // componentDidMount() {
-  //   this.doGetUser().then(({ user }) => this.setState({ user }));
-  // }
-
-  // doGetUser = async () => {
-  //   try {
-  //     const user = await fetch(`/users/${this.props.match.params.id}`);
-  //     const parsedUser = await user.json();
-  //     return parsedUser;
-  //   } catch (error) {
-  //     throw new Error();
-  //   }
-  // };
+  state = {
+    data: null
+  }
+  componentDidMount() {
+    this.handleGetPhrase().then(allData => {
+      this.setState({
+        data: allData
+      });
+    });
+  }
+  handleGetPhrase = async () => {
+    try {
+      const getPhrase = await fetch("http://localhost:5000/phrases/create", {
+        credentials: "include"
+      });
+      const response = await getPhrase.json();
+      console.log(response);
+      return response
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
   render() {
-    // const { username } = this.state.username;
+    const { data } = this.state
     return (
       <>
         <main>
@@ -33,8 +42,11 @@ class User extends Component {
             <Button>Edit password</Button>
           </div>
           <div style={{ height: "80vh", paddingTop: "3rem" }}>
+            {
+              data
+              &&
             <ul>
-              {this.props.data.map(
+              {data.map(
                 (phrase, i) =>
                   this.props.currentUser.id === Number(phrase.userId) && (
                     <li
@@ -49,6 +61,7 @@ class User extends Component {
                   )
               )}
             </ul>
+            }
           </div>
         </main>
       </>
