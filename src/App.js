@@ -18,14 +18,14 @@ class App extends Component {
     currentUser: {}
   };
 
-  componentDidMount(){
-    const current = localStorage.getItem("user")
-    const parsedCurrent = JSON.parse(current)
-    if (parsedCurrent){
+  componentDidMount() {
+    const current = localStorage.getItem("user");
+    const parsedCurrent = JSON.parse(current);
+    if (parsedCurrent) {
       this.setState({
         currentUser: parsedCurrent,
         logged: true
-      })
+      });
     }
   }
   doLogout = async () => {
@@ -39,7 +39,7 @@ class App extends Component {
       });
       const response = await logout.json();
       this.props.history.push(routes.ROOT);
-      localStorage.clear()
+      localStorage.clear();
       this.setState({
         currentUser: {},
         logged: response.logged,
@@ -65,7 +65,7 @@ class App extends Component {
       );
       const response = await registerCall.json();
       if (response.message === "success") {
-        localStorage.setItem("user", JSON.stringify(response.user))
+        localStorage.setItem("user", JSON.stringify(response.user));
         this.setState({
           currentUser: response.user,
           logged: response.logged
@@ -88,9 +88,9 @@ class App extends Component {
         }
       });
       const response = await loginCall.json();
-      
+
       if (response.message === "success") {
-        localStorage.setItem("user", JSON.stringify(response.user))
+        localStorage.setItem("user", JSON.stringify(response.user));
         this.setState({
           currentUser: response.user,
           logged: response.logged
@@ -176,7 +176,12 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => <User currentUser={currentUser} />}
+              render={() => (
+                <User
+                  currentUser={currentUser}
+                  handleSubmit={this.handleSubmit}
+                />
+              )}
             />
           </Switch>
         </main>
