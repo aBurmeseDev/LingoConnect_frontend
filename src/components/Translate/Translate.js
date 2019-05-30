@@ -49,14 +49,9 @@ class Translate extends Component {
     // onchange this.setstate to api key inputs
     return (
       <>
-
-        <h4 style={{ textAlign: "center" }}>{this.state.translation}</h4>
         {
-            this.props.currentUser && translation !== "Translation"
-            ? <Button onClick={()=> this.props.handleSavePhrase(this.state)}>Save</Button>
-            : <h5 style={{ textAlign: "center" }}>Translate and login in to save phrases!</h5>
+            !this.props.currentUser && <h5 style={{textAlign: "center"}}> Translate and login to save your phrases!</h5>
         }
-
         <form onSubmit={this.handleSubmit}  id="translateForm">
 
           <label>Choose your Language:</label>
@@ -291,6 +286,11 @@ class Translate extends Component {
           </Button>
           <Modal id="modal3">
             <h3 style={{ textAlign: "center" }}>{translation}</h3>
+            {
+                this.props.currentUser && translation !== "Translation"
+                ? <Button onClick={()=> this.props.handleSavePhrase(this.state)}>Save</Button>
+                : <h5 style={{ textAlign: "center" }}>Translate and login in to save phrases!</h5>
+            }
           </Modal>
         </form>
       </>

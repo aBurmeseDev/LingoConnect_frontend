@@ -16,7 +16,7 @@ const AppNavbar = ({
   <Navbar alignLinks="right">
     {currentUser
       ? [
-          <NavLink key={3} to={routes.USER}>
+          <NavLink key={3} to={`${routes.USER}/${currentUser.id}`}>
             Account
           </NavLink>,
           <NavLink key={4} onClick={doLogout}>
