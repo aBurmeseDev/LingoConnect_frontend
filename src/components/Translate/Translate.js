@@ -5,7 +5,7 @@ import { Button, Select, TextInput, Icon, Modal } from "react-materialize";
 class Translate extends Component {
   state = {
     text: "",
-    translation: "Translation",
+    translation: "Translating...",
     setLanguage: "en",
     transLanguage: ""
   };
@@ -287,9 +287,9 @@ class Translate extends Component {
           <Modal id="modal3">
             <h3 style={{ textAlign: "center" }}>{translation}</h3>
             {
-                this.props.currentUser && translation !== "Translation"
-                ? <Button onClick={()=> this.props.handleSavePhrase(this.state)}>Save</Button>
-                : <h5 style={{ textAlign: "center" }}>Translate and login in to save phrases!</h5>
+                this.props.currentUser && translation !== "Translating..."
+                ? <Button onClick={()=> this.props.handleSavePhrase(this.state)} className="modal-close">Save</Button>
+                : <h5 style={{ textAlign: "center" }}>Log in to save phrases!</h5>
             }
           </Modal>
         </form>

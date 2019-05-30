@@ -16,12 +16,11 @@ class User extends Component {
   //     throw new Error();
   //   }
   // };
+  
   render() {
     // const { username } = this.state.username;
-    console.log(this.props);
-    console.log(this.props.currentUser, "user");
     return (
-      <div>
+      <>
         <main>
           <div className="user-info">
             <h5 style={{ textAlign: "center" }}>Edit Account</h5>
@@ -52,7 +51,7 @@ class User extends Component {
             </ul>
           </div>
         </main>
-      </div>
+      </>
     );
   }
 }

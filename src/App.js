@@ -9,7 +9,6 @@ import Translate from "./components/Translate/Translate";
 import User from "./components/User/User";
 import AppNavBar from "./components/AppNavbar/AppNavbar";
 
-// import Login from "./components/Login/Login";
 import * as routes from "./components/constants/routes";
 
 class App extends Component {
@@ -28,26 +27,26 @@ class App extends Component {
     });
   }
   doLogout = async () => {
-    await fetch("/login/logout", {
-      credentials: "include",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    this.setState({
-      currentUser: null
-    });
-    this.props.history.push(routes.ROOT);
+    try {
+      const logout = await fetch("http://localhost:5000/users/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const response = await logout.json() 
+      this.props.history.push(routes.ROOT);
+      this.setState({
+        currentUser: null,
+        logged: response.logged,
+        loginMessage: response.message
+
+      });
+    } catch (error) {
+      console.log(error)
+    }
   };
-  handleRegModal = () =>
-    this.setState({
-      showModal: true
-    });
-  handleCloseModal = () =>
-    this.setState({
-      showModal: false
-    });
 
   handleRegister = async data => {
     try {
