@@ -17,7 +17,7 @@ class Translate extends Component {
   };
   handleSavePhrase = async data => {
     const { currentUser } = this.props;
-    const { text, translation, setLanguage, transLanguage } = this.props.data
+    const { text, translation, setLanguage, transLanguage } = this.state
     console.log(data);
     let obj = {
       userId: currentUser.id,
@@ -36,6 +36,9 @@ class Translate extends Component {
         }
       });
       const response = await savePhrase.json();
+      this.setState({
+        translation: "Translating..."
+      })
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -72,6 +75,7 @@ class Translate extends Component {
   };
   render() {
     const { translation } = this.state;
+    
     // onchange this.setstate to api key inputs
     return (
       <>
