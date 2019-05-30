@@ -28,6 +28,24 @@ class App extends Component {
       })
     }
   }
+  handleDeleteUser = async id => {
+    try {
+      const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      const response = await deleteUser.json();
+      localStorage.clear()
+      this.props.history.push(routes.ROOT);
+      this.setState({
+        currentUser: {}
+      })
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   doLogout = async () => {
     try {
       const logout = await fetch("http://localhost:5000/users/logout", {
@@ -176,7 +194,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => <User currentUser={currentUser} />}
+              render={() => <User currentUser={currentUser} handleDeleteUser={this.handleDeleteUser}/>}
             />
           </Switch>
         </main>

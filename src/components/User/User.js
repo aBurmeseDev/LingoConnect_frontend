@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
 
 import { Button } from "react-materialize";
 
@@ -25,6 +27,24 @@ class User extends Component {
       console.log(error);
     }
   };
+  handleDeletePhrase = async id => {
+    try {
+      const deletePhrase = await fetch(`http://localhost:5000/phrases/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      const response = await deletePhrase.json();
+      this.setState({
+        data: this.state.data.filter(d => d.id !== id)
+      })
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  
 
   render() {
     const { data } = this.state;
@@ -53,7 +73,6 @@ class User extends Component {
                         textAlign: "center",
                         marginTop: "1rem",
                         paddingLeft: "0.5rem",
-                        marginTop: "0.95rem",
                         marginLeft: "0.75rem",
                         borderRight: "2px dotted black"
                       }}
@@ -65,7 +84,7 @@ class User extends Component {
                       </p>{" "}
                       <h5 style={{ fontWeight: "700" }}>{phrase.phrase}</h5>{" "}
                       <br />
-                      <Button style={{ marginBottom: "3rem" }}>
+                      <Button key={phrase.id} onClick={() => this.handleDeletePhrase(phrase.id)}style={{ marginBottom: "3rem" }}>
                         Delete Phrase
                       </Button>
                     </li>
@@ -74,9 +93,9 @@ class User extends Component {
             </ul>
           )}
         </div>
-        <Button>Delete account</Button>
+        <Button onClick={()=> this.props.handleDeleteUser(this.props.currentUser.id)}>Delete account</Button>
       </>
     );
   }
 }
-export default User;
+export default withRouter(User);

@@ -15,6 +15,32 @@ class Translate extends Component {
     });
     console.log(this.state);
   };
+  handleSavePhrase = async data => {
+    const { currentUser } = this.props;
+    const { text, translation, setLanguage, transLanguage } = this.props.data
+    console.log(data);
+    let obj = {
+      userId: currentUser.id,
+      text: text,
+      phrase: translation,
+      setLanguage: setLanguage,
+      transLanguage: transLanguage
+    };
+    try {
+      const savePhrase = await fetch("http://localhost:5000/phrases/create", {
+        method: "POST",
+        body: JSON.stringify(obj),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const response = await savePhrase.json();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   getTranslation = async () => {
     try {
       const translate = await fetch(
@@ -290,7 +316,7 @@ class Translate extends Component {
             <h3 style={{ textAlign: "center" }}>{translation}</h3>
             {this.props.currentUser && translation !== "Translating..." ? (
               <Button
-                onClick={() => this.props.handleSavePhrase(this.state)}
+                onClick={() => this.handleSavePhrase(this.state)}
                 className="modal-close"
               >
                 Save
