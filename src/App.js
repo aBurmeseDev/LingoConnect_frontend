@@ -15,17 +15,8 @@ class App extends Component {
   state = {
     loginMessage: null,
     registerMessage: null,
-    currentUser: null,
-    data: null
+    currentUser: null
   };
-
-  componentDidMount() {
-    this.handleGetPhrase().then(allData => {
-      this.setState({
-        data: allData
-      });
-    });
-  }
   doLogout = async () => {
     try {
       const logout = await fetch("http://localhost:5000/users/logout", {
@@ -125,20 +116,8 @@ class App extends Component {
       console.log(error);
     }
   };
-  handleGetPhrase = async () => {
-    try {
-      const getPhrase = await fetch("http://localhost:5000/phrases/create", {
-        credentials: "include"
-      });
-      const response = await getPhrase.json();
-      console.log(response);
-      return response
-    } catch (error) {
-      console.log(error);
-    }
-  };
   render() {
-    const { showModal, loginMessage, currentUser, data} = this.state;
+    const { showModal, loginMessage, currentUser} = this.state;
     return (
       <div className="App">
         <main>
@@ -181,7 +160,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => <User currentUser={currentUser} data={data}/>}
+              render={() => <User currentUser={currentUser} />}
             />
           </Switch>
         </main>

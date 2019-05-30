@@ -7,7 +7,7 @@ class Translate extends Component {
     text: "",
     translation: "Translating...",
     setLanguage: "en",
-    transLanguage: ""
+    transLanguage: "en"
   };
   handleChange = e => {
     this.setState({
