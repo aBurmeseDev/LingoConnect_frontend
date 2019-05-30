@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 
-import { Button, Select, TextInput, Icon, Modal } from "react-materialize";
+import {
+  Button,
+  Select,
+  TextInput,
+  Icon,
+  Modal,
+  Slide,
+  Slider,
+  Caption
+} from "react-materialize";
 
 class Translate extends Component {
   state = {
@@ -79,6 +88,40 @@ class Translate extends Component {
     // onchange this.setstate to api key inputs
     return (
       <>
+        {/* <Slider>
+          <Slide image={<img />}>
+            <Caption>
+              <h3>This is our big Tagline!</h3>
+              <h5 className="light grey-text text-lighten-3">
+                Here's our small slogan.
+              </h5>
+            </Caption>
+          </Slide>
+          <Slide image={<img />}>
+            <Caption placement="left">
+              <h3>Left Aligned Caption</h3>
+              <h5 className="light grey-text text-lighten-3">
+                Here's our small slogan.
+              </h5>
+            </Caption>
+          </Slide>
+          <Slide image={<img />}>
+            <Caption placement="right">
+              <h3>Right Aligned Caption</h3>
+              <h5 className="light grey-text text-lighten-3">
+                Here's our small slogan.
+              </h5>
+            </Caption>
+          </Slide>
+          <Slide image={<img />}>
+            <Caption>
+              <h3>This is our big Tagline!</h3>
+              <h5 className="light grey-text text-lighten-3">
+                Here's our small slogan.
+              </h5>
+            </Caption>
+          </Slide>
+        </Slider> */}
         {!this.props.currentUser && (
           <h5 style={{ textAlign: "center" }}>
             {" "}
@@ -330,6 +373,27 @@ class Translate extends Component {
             )}
           </Modal>
         </form>
+        <div className="row">
+          <h5 style={{ textAlign: "center" }}>Creators</h5>
+          <div className="col s5" style={{ textAlign: "center" }}>
+            <h6>Joshua Ablan</h6>
+            <a style={{ paddingRight: "0.5rem" }}>
+              <i class="fab fa-linkedin fa-2x" />
+            </a>
+            <a>
+              <i class="fab fa-github-square fa-2x" />
+            </a>
+          </div>
+          <div className="col s5" style={{ textAlign: "center" }}>
+            <h6>John Lwin</h6>
+            <a style={{ paddingRight: "0.5rem" }}>
+              <i class="fab fa-linkedin fa-2x" />
+            </a>
+            <a>
+              <i class="fab fa-github-square fa-2x" />
+            </a>
+          </div>
+        </div>
       </>
     );
   }

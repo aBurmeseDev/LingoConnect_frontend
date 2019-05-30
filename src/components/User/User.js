@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 
-import { Button } from "react-materialize";
+import { Button, Modal } from "react-materialize";
 
 class User extends Component {
   state = {
@@ -51,14 +51,39 @@ class User extends Component {
     return (
       <>
         <div className="user-info">
-          <h5 style={{ textAlign: "center" }}>Edit Account</h5>
-          <h6 style={{ textAlign: "center" }}>
-            username:{" "}
+          {/* <h5 style={{ textAlign: "center" }}>Edit Account</h5> */}
+          <h5 style={{ textAlign: "center" }}>
             {this.props.currentUser && this.props.currentUser.username}
-          </h6>
-          <Button>Edit name</Button>
-          <h6 style={{ textAlign: "center" }}>password:</h6>
-          <Button>Edit password</Button>
+          </h5>
+          <Button type="submit" href="#modal4" className="modal-trigger">
+            Edit
+          </Button>
+          <Modal id="modal4">
+            <input
+              type="text"
+              name="username"
+              placeholder="new name"
+              autoComplete="off"
+              onChange={this.props.handleChange}
+            />
+            <br />
+
+            <input
+              type="password"
+              name="password"
+              placeholder="new password"
+              onChange={this.props.handleChange}
+              autoComplete="off"
+            />
+            <br />
+
+            <Button
+              onClick={() => this.props.handleSubmit(this.state)}
+              className="modal-close"
+            >
+              Save
+            </Button>
+          </Modal>
         </div>
         <div style={{ paddingTop: "3rem" }} className="row">
           {data && (

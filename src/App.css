@@ -36,10 +36,10 @@ body {
   min-height: 100vh;
   flex-direction: column;
   margin: 0;
-  box-sizing: border-box;
 }
 main {
   flex: 1 0 auto;
+  min-height: 100vh;
 }
 /* Nav */
 nav {
@@ -51,7 +51,7 @@ nav {
   background-color: rgba(200, 200, 200, 0.5);
   padding: 0.01rem;
   /* margin-bottom: 7rem; */
-  height: 80vh;
+  min-height: 80vh;
 }
 input {
   display: block;
@@ -67,7 +67,7 @@ label {
   display: block;
   text-align: center;
   line-height: 100%;
-  color: #133062;
+  color: #959595;
 }
 ::placeholder {
   color: #444444;
@@ -75,6 +75,7 @@ label {
 button {
   display: block !important;
   margin: auto !important;
+  background-color: #133062 !important;
 }
 
 .dropdown-content li span {
@@ -89,4 +90,11 @@ footer {
 .user-info {
   /* height: 100px; */
   margin: 0 auto;
+}
+
+.modal {
+  width: 40%;
+  border-radius: 5%;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  /* background-color: rgb(0, 0, 0); */
 }
