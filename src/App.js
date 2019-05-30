@@ -28,6 +28,24 @@ class App extends Component {
       });
     }
   }
+  handleDeleteUser = async id => {
+    try {
+      const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      const response = await deleteUser.json();
+      localStorage.clear()
+      this.props.history.push(routes.ROOT);
+      this.setState({
+        currentUser: {}
+      })
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   doLogout = async () => {
     try {
       const logout = await fetch("http://localhost:5000/users/logout", {
@@ -106,31 +124,31 @@ class App extends Component {
       console.log(err);
     }
   };
-  handleSavePhrase = async data => {
-    const { currentUser } = this.state;
-    console.log(data);
-    let obj = {
-      userId: currentUser.id,
-      text: data.text,
-      phrase: data.translation,
-      setLanguage: data.setLanguage,
-      transLanguage: data.transLanguage
-    };
-    try {
-      const savePhrase = await fetch("http://localhost:5000/phrases/create", {
-        method: "POST",
-        body: JSON.stringify(obj),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      const response = await savePhrase.json();
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // handleSavePhrase = async data => {
+  //   const { currentUser } = this.state;
+  //   console.log(data);
+  //   let obj = {
+  //     userId: currentUser.id,
+  //     text: data.text,
+  //     phrase: data.translation,
+  //     setLanguage: data.setLanguage,
+  //     transLanguage: data.transLanguage
+  //   };
+  //   try {
+  //     const savePhrase = await fetch("http://localhost:5000/phrases/create", {
+  //       method: "POST",
+  //       body: JSON.stringify(obj),
+  //       credentials: "include",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     });
+  //     const response = await savePhrase.json();
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   render() {
     const { showModal, loginMessage, currentUser } = this.state;
     return (
@@ -176,7 +194,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => <User currentUser={currentUser} />}
+              render={() => <User currentUser={currentUser} handleDeleteUser={this.handleDeleteUser}/>}
             />
           </Switch>
         </main>
