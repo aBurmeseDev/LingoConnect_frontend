@@ -16,6 +16,9 @@ const AppNavbar = ({
   <Navbar alignLinks="right">
     {currentUser
       ? [
+          <NavLink key={15} to={routes.ROOT} style={{ textAlign: "center" }}>
+            LingoConnect
+          </NavLink>,
           <NavLink key={3} to={`${routes.USER}/${currentUser.id}`}>
             Account
           </NavLink>,
@@ -28,7 +31,7 @@ const AppNavbar = ({
             <div key={2} href="#modal1" className="modal-trigger">
               Login
             </div>
-            ,
+
             <Modal id="modal1" header="" key={10}>
               <Login
                 handleLogin={handleLogin}

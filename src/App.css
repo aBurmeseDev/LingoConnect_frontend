@@ -31,9 +31,14 @@
     transform: rotate(360deg);
   }
 } */
-/* body {
-  background-color: rgb(126, 149, 248);
-} */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
 /* Nav */
 nav {
   background-color: #133062;
@@ -43,7 +48,8 @@ nav {
 #translateForm {
   background-color: rgba(200, 200, 200, 0.5);
   padding: 0.01rem;
-  height: 100vh;
+  /* margin-bottom: 7rem; */
+  height: 80vh;
 }
 input {
   display: block;
@@ -79,6 +85,6 @@ footer {
 
 /* User page */
 .user-info {
-  height: 100px;
+  /* height: 100px; */
   margin: 0 auto;
 }
