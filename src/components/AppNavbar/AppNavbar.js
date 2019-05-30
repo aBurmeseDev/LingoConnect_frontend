@@ -14,7 +14,7 @@ const AppNavbar = ({
   doLogout
 }) => (
   <Navbar alignLinks="right">
-    {currentUser
+    {currentUser.username
       ? [
           <NavLink key={15} to={routes.ROOT} style={{ textAlign: "center" }}>
             LingoConnect
