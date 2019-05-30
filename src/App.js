@@ -15,8 +15,19 @@ class App extends Component {
   state = {
     loginMessage: null,
     registerMessage: null,
-    currentUser: null
+    currentUser: {}
   };
+
+  componentDidMount(){
+    const current = localStorage.getItem("user")
+    const parsedCurrent = JSON.parse(current)
+    if (parsedCurrent){
+      this.setState({
+        currentUser: parsedCurrent,
+        logged: true
+      })
+    }
+  }
   doLogout = async () => {
     try {
       const logout = await fetch("http://localhost:5000/users/logout", {
@@ -28,8 +39,9 @@ class App extends Component {
       });
       const response = await logout.json() 
       this.props.history.push(routes.ROOT);
+      localStorage.clear()
       this.setState({
-        currentUser: null,
+        currentUser: {},
         logged: response.logged,
         loginMessage: response.message
 
@@ -54,6 +66,7 @@ class App extends Component {
       );
       const response = await registerCall.json();
       if (response.message === "success") {
+        localStorage.setItem("user", JSON.stringify(response.user))
         this.setState({
           currentUser: response.user,
           logged: response.logged
@@ -76,13 +89,16 @@ class App extends Component {
         }
       });
       const response = await loginCall.json();
-      this.setState({
-        loginMessage: response.message
-      });
+      
       if (response.message === "success") {
+        localStorage.setItem("user", JSON.stringify(response.user))
         this.setState({
           currentUser: response.user,
           logged: response.logged
+        });
+      } else {
+        this.setState({
+          loginMessage: response.message
         });
       }
       console.log(response.user);
