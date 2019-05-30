@@ -28,17 +28,21 @@ class App extends Component {
   }
   doLogout = async () => {
     try {
-      await fetch("http://localhost:5000/users/logout", {
+      const logout = await fetch("http://localhost:5000/users/logout", {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
       });
-      this.setState({
-        currentUser: null
-      });
+      const response = await logout.json() 
       this.props.history.push(routes.ROOT);
+      this.setState({
+        currentUser: null,
+        logged: response.logged,
+        loginMessage: response.message
+
+      });
     } catch (error) {
       console.log(error)
     }
