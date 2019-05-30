@@ -103,10 +103,13 @@ class App extends Component {
   };
   handleSavePhrase = async data => {
     const { currentUser } = this.state;
+    console.log(data)
     let obj = {
       userId: currentUser.id,
       text: data.text,
-      phrase: data.translation
+      phrase: data.translation,
+      setLanguage: data.setLanguage,
+      transLanguage: data.transLanguage
     };
     try {
       const savePhrase = await fetch("http://localhost:5000/phrases/create", {
@@ -130,12 +133,13 @@ class App extends Component {
       });
       const response = await getPhrase.json();
       console.log(response);
+      return response
     } catch (error) {
       console.log(error);
     }
   };
   render() {
-    const { showModal, loginMessage, currentUser } = this.state;
+    const { showModal, loginMessage, currentUser, data} = this.state;
     return (
       <div className="App">
         <main>
@@ -177,8 +181,8 @@ class App extends Component {
             />
             <Route
               exact
-              path={routes.USER}
-              render={() => <User currentUser={currentUser} />}
+              path={`${routes.USER}/:id`}
+              render={() => <User currentUser={currentUser} data={data}/>}
             />
           </Switch>
         </main>
