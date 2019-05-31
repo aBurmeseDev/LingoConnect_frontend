@@ -20,7 +20,7 @@ class Login extends Component {
       <form onSubmit={this.handleSubmit}>
         <h6 style={{ textAlign: "center" }}>Welcome back!</h6>
         <label>
-          username:
+          Username:
           <input
             type="text"
             name="username"
@@ -31,7 +31,7 @@ class Login extends Component {
         </label>
         <br />
         <label>
-          password:
+          Password:
           <input
             type="password"
             name="password"

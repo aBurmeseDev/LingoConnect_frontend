@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-
 import { Button, Modal } from "react-materialize";
 
 class User extends Component {
@@ -9,7 +8,7 @@ class User extends Component {
     data: null,
     username: this.props.currentUser.username,
     email: this.props.currentUser.email,
-    password: "",
+    password: ""
   };
   componentDidMount() {
     this.handleGetPhrase().then(allData => {
@@ -31,24 +30,27 @@ class User extends Component {
   };
   handleEdit = async () => {
     try {
-      const editUser = await fetch(`http://localhost:5000/users/${this.props.currentUser.id}`, {
-        method: "PUT",
-        body: JSON.stringify(this.state),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
+      const editUser = await fetch(
+        `http://localhost:5000/users/${this.props.currentUser.id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(this.state),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      })
-      const response = await editUser.json()
-      console.log(response)
-      this.props.setCurrentUser(response)
+      );
+      const response = await editUser.json();
+      console.log(response);
+      this.props.setCurrentUser(response);
       this.setState({
         password: ""
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   handleGetPhrase = async () => {
     try {
       const getPhrase = await fetch("http://localhost:5000/phrases/create", {
@@ -65,26 +67,24 @@ class User extends Component {
     try {
       const deletePhrase = await fetch(`http://localhost:5000/phrases/${id}`, {
         method: "DELETE",
-        credentials: "include",
+        credentials: "include"
       });
       const response = await deletePhrase.json();
       this.setState({
         data: this.state.data.filter(d => d.id !== id)
-      })
+      });
       console.log(response);
       return response;
     } catch (error) {
       console.log(error);
     }
   };
-  
-  
 
   render() {
     const { data, username, email, password } = this.state;
-    const { currentUser } = this.props
-    console.log(this.props.currentUser, "currentstate")
-    console.log(this.state, "user state")
+    const { currentUser } = this.props;
+    console.log(this.props.currentUser, "currentstate");
+    console.log(this.state, "user state");
     return (
       <>
         <div className="user-info">
@@ -92,6 +92,12 @@ class User extends Component {
           <h5 style={{ textAlign: "center" }}>
             {currentUser && currentUser.username}
           </h5>
+          <h6 style={{ textAlign: "center" }}>
+            {currentUser && currentUser.email}
+          </h6>
+          <h6 style={{ textAlign: "center" }}>
+            {currentUser && currentUser.primaryLanguage}
+          </h6>
           <Button type="submit" href="#modal4" className="modal-trigger">
             Edit
           </Button>
@@ -133,7 +139,7 @@ class User extends Component {
             </Button>
           </Modal>
         </div>
-        <div style={{ paddingTop: "3rem" }} className="row">
+        <div style={{ paddingTop: "3rem" }} className="row phrases">
           {data && (
             <ul>
               {data.map(
@@ -141,7 +147,7 @@ class User extends Component {
                   currentUser.id === Number(phrase.userId) && (
                     <li
                       key={i}
-                      className="col m{i}"
+                      className="col s12 m4 l3"
                       style={{
                         textAlign: "center",
                         marginTop: "1rem",
@@ -157,7 +163,10 @@ class User extends Component {
                       </p>{" "}
                       <h5 style={{ fontWeight: "700" }}>{phrase.phrase}</h5>{" "}
                       <br />
-                      <Button onClick={() => this.handleDeletePhrase(phrase.id)}style={{ marginBottom: "3rem" }}>
+                      <Button
+                        onClick={() => this.handleDeletePhrase(phrase.id)}
+                        style={{ marginBottom: "3rem" }}
+                      >
                         Delete Phrase
                       </Button>
                     </li>
@@ -166,7 +175,25 @@ class User extends Component {
             </ul>
           )}
         </div>
-        <Button onClick={()=> this.props.handleDeleteUser(currentUser.id)}>Delete account</Button>
+        <Button href="#modal5" className="modal-trigger">
+          Delete account
+        </Button>
+        <Modal id="modal5">
+          Before you go....
+          <h6 style={{ textAlign: "center" }}> Is it Goodbye?</h6>
+          <br />
+          <p style={{ textAlign: "center" }}>
+            The account will no longer be available, and all data in the account
+            will be permanently deleted.
+          </p>
+          <Button
+            onClick={() => this.props.handleDeleteUser(currentUser.id)}
+            className="deleteBtn"
+          >
+            Yes!
+          </Button>
+          <Button className="modal-close deleteBtn">I will stay</Button>
+        </Modal>
       </>
     );
   }
