@@ -6,7 +6,10 @@ import { Button, Modal } from "react-materialize";
 
 class User extends Component {
   state = {
-    data: null
+    data: null,
+    username: this.props.currentUser.username,
+    email: this.props.currentUser.email,
+    password: "",
   };
   componentDidMount() {
     this.handleGetPhrase().then(allData => {
@@ -14,6 +17,37 @@ class User extends Component {
         data: allData
       });
     });
+  }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.handleEdit(this.state);
+    // add close modal function
+  };
+  handleEdit = async () => {
+    try {
+      const editUser = await fetch(`http://localhost:5000/users/${this.props.currentUser.id}`, {
+        method: "PUT",
+        body: JSON.stringify(this.state),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const response = await editUser.json()
+      console.log(response)
+      this.props.setCurrentUser(response)
+      this.setState({
+        password: ""
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
   handleGetPhrase = async () => {
     try {
@@ -47,13 +81,15 @@ class User extends Component {
   
 
   render() {
-    const { data } = this.state;
+    const { data, username, email, password } = this.state;
+    const { currentUser } = this.props
+    console.log(this.state)
     return (
       <>
         <div className="user-info">
           {/* <h5 style={{ textAlign: "center" }}>Edit Account</h5> */}
           <h5 style={{ textAlign: "center" }}>
-            {this.props.currentUser && this.props.currentUser.username}
+            {currentUser && currentUser.username}
           </h5>
           <Button type="submit" href="#modal4" className="modal-trigger">
             Edit
@@ -62,23 +98,34 @@ class User extends Component {
             <input
               type="text"
               name="username"
-              placeholder="new name"
+              value={username}
+              // placeholder={currentUser.username}
               autoComplete="off"
-              onChange={this.props.handleChange}
+              onChange={this.handleChange}
             />
             <br />
 
             <input
               type="password"
               name="password"
+              value={password}
               placeholder="new password"
-              onChange={this.props.handleChange}
+              onChange={this.handleChange}
+              autoComplete="off"
+            />
+            <br />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              // placeholder={currentUser.email}
+              onChange={this.handleChange}
               autoComplete="off"
             />
             <br />
 
             <Button
-              onClick={() => this.props.handleSubmit(this.state)}
+              onClick={() => this.handleEdit(this.state)}
               className="modal-close"
             >
               Save
@@ -90,7 +137,7 @@ class User extends Component {
             <ul>
               {data.map(
                 (phrase, i) =>
-                  this.props.currentUser.id === Number(phrase.userId) && (
+                  currentUser.id === Number(phrase.userId) && (
                     <li
                       key={i}
                       className="col m{i}"
@@ -109,7 +156,7 @@ class User extends Component {
                       </p>{" "}
                       <h5 style={{ fontWeight: "700" }}>{phrase.phrase}</h5>{" "}
                       <br />
-                      <Button key={phrase.id} onClick={() => this.handleDeletePhrase(phrase.id)}style={{ marginBottom: "3rem" }}>
+                      <Button onClick={() => this.handleDeletePhrase(phrase.id)}style={{ marginBottom: "3rem" }}>
                         Delete Phrase
                       </Button>
                     </li>
@@ -118,7 +165,7 @@ class User extends Component {
             </ul>
           )}
         </div>
-        <Button onClick={()=> this.props.handleDeleteUser(this.props.currentUser.id)}>Delete account</Button>
+        <Button onClick={()=> this.props.handleDeleteUser(currentUser.id)}>Delete account</Button>
       </>
     );
   }

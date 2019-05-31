@@ -28,6 +28,11 @@ class App extends Component {
       });
     }
   }
+  setCurrentUser = (user) => {
+    this.setState({
+      currentUser: user
+    })
+  }
   handleDeleteUser = async id => {
     try {
       const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
@@ -170,7 +175,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => <User currentUser={currentUser} handleDeleteUser={this.handleDeleteUser}/>}
+              render={() => <User currentUser={currentUser} setCurrentUser={this.setCurrentUser} handleDeleteUser={this.handleDeleteUser}/>}
             />
           </Switch>
         </main>
