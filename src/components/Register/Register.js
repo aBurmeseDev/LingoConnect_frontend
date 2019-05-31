@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import { Button } from "react-materialize";
-// const modalRoot = document.getElementById("modal-root");
 
 class Register extends Component {
   state = {
@@ -55,7 +54,6 @@ class Register extends Component {
             onChange={this.handleChange}
           />
           <br />
-          {/* Need to make into a drop down options like "en - English" so we can preset the language */}
         </label>
         <label>
           Password:

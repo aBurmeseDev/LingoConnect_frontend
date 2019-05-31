@@ -26,12 +26,10 @@ class Translate extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   };
   handleSavePhrase = async data => {
     const { currentUser } = this.props;
     const { text, translation, setLanguage, transLanguage } = this.state;
-    console.log(data);
     let obj = {
       userId: currentUser.id,
       text: text,
@@ -52,7 +50,6 @@ class Translate extends Component {
       this.setState({
         translation: "Translating..."
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +70,6 @@ class Translate extends Component {
         }
       );
       const translateJson = await translate.json();
-      console.log(translateJson);
       this.setState({
         translation: translateJson.text[0]
       });
@@ -84,12 +80,9 @@ class Translate extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     this.getTranslation();
-    // add close modal function
   };
   render() {
     const { translation } = this.state;
-
-    // onchange this.setstate to api key inputs
     return (
       <>
         <Slider style={{ marginBottom: "2rem" }}>
@@ -113,8 +106,6 @@ class Translate extends Component {
         <form onSubmit={this.handleSubmit} id="translateForm">
           <label>Choose your Language:</label>
           <Select
-            // label="Choose your Language"
-            // style={{ display: "block" }}
             name="setLanguage"
             onChange={this.handleChange}
           >
@@ -232,7 +223,6 @@ class Translate extends Component {
             <Select
               name="transLanguage"
               onChange={this.handleChange}
-              //   style={{ display: "block" }}
             >
               <option value="en" defaultValue="1">
                 English
@@ -330,7 +320,6 @@ class Translate extends Component {
               <option value="ja">Japanese</option>
             </Select>
             <br />
-            {/* Need to make into a drop down options like "en - English" so we can preset the language */}
           </label>
           <Button
             type="submit"
