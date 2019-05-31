@@ -7,6 +7,7 @@ class Register extends Component {
   state = {
     username: "",
     email: "",
+    primaryLanguage: "",
     password: "",
     verify_password: ""
   };
@@ -23,9 +24,10 @@ class Register extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h6 style={{ textAlign: "center" }}>Welcome new friend!</h6>
+        <h4 style={{ textAlign: "center" }}>Hey!</h4>
+        <h6 style={{ textAlign: "center" }}>Welcome to LingoConnect!</h6>
         <label>
-          username:
+          Username:
           <input
             type="text"
             name="username"
@@ -35,11 +37,11 @@ class Register extends Component {
           <br />
         </label>
         <label>
-          email:
+          Email:
           <input
             type="email"
             name="email"
-            placeholder="actual email!"
+            placeholder="email please!"
             onChange={this.handleChange}
           />
           <br />
@@ -60,7 +62,7 @@ class Register extends Component {
           <input
             type="text"
             name="password"
-            placeholder="what's the password?"
+            placeholder="secure with password!"
             onChange={this.handleChange}
           />
           <br />

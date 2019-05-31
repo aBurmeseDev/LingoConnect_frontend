@@ -86,7 +86,7 @@ label {
   display: block;
   text-align: center;
   line-height: 100%;
-  color: #2b2b2b;
+  color: #000000;
 }
 ::placeholder {
   color: #757575;
@@ -94,7 +94,6 @@ label {
 button {
   display: block !important;
   margin: auto !important;
-
   background-color: #9b0000 !important;
 }
 
@@ -109,12 +108,25 @@ footer {
 /* User page */
 .user-info {
   /* height: 100px; */
+  width: 20rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin: 0 auto;
+  margin-top: 4rem;
+  background-color: rgba(202, 202, 202, 0.5);
+
+  /* border: 2px solid black; */
+}
+.phrases {
+  min-height: 50vh;
 }
 
 /* Modals  */
 .modal {
   border-radius: 2%;
+}
+.modal-footer {
+  display: none !important;
 }
 @media screen and (min-width: 1171px) {
   .modal {
@@ -125,6 +137,10 @@ footer {
   }
   .caption {
     width: 40% !important;
+  }
+  .deleteBtn {
+    display: inline-block !important;
+    margin-left: 20% !important;
   }
 }
 .modal-overlay {
