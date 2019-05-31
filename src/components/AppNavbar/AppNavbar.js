@@ -44,7 +44,7 @@ const AppNavbar = ({
             <div href="#modal2" className="modal-trigger" key={6}>
               Register
             </div>
-            <Modal id="modal2" header="Register" key={7}>
+            <Modal id="modal2" key={7}>
               <Register handleRegister={handleRegister} key={8} />
             </Modal>
           </NavItem>
