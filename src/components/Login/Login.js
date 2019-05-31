@@ -41,7 +41,9 @@ class Login extends Component {
           />
         </label>
         <span>{this.props.loginMessage}</span>
-        <Button type="submit">Login</Button>
+        <Button type="submit" className="login">
+          Login
+        </Button>
       </form>
     );
   }
