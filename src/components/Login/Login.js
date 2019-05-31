@@ -40,7 +40,11 @@ class Login extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <span>{this.props.loginMessage}</span>
+        {
+          this.props.loginMessage === "Logged out"
+          ? <h6></h6>
+          : <h6 style={{textAlign:"center"}}>{this.props.loginMessage}</h6>
+        }
         <Button type="submit" className="login">
           Login
         </Button>

@@ -46,7 +46,8 @@ class Translate extends Component {
           "Content-Type": "application/json"
         }
       });
-      const response = await savePhrase.json();
+      await savePhrase.json();
+
       this.setState({
         translation: "Translating..."
       });
