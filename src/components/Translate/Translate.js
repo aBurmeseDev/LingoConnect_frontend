@@ -10,6 +10,11 @@ import {
   Slider,
   Caption
 } from "react-materialize";
+import img1 from "../resources/hello-gif.gif";
+import img2 from "../resources/hello-gif1.jpg";
+import img3 from "../resources/hello-gif3.gif";
+import img4 from "../resources/hello-gif4.gif";
+import globe from "../resources/globe-lan.jpg";
 
 class Translate extends Component {
   state = {
@@ -26,7 +31,7 @@ class Translate extends Component {
   };
   handleSavePhrase = async data => {
     const { currentUser } = this.props;
-    const { text, translation, setLanguage, transLanguage } = this.state
+    const { text, translation, setLanguage, transLanguage } = this.state;
     console.log(data);
     let obj = {
       userId: currentUser.id,
@@ -47,7 +52,7 @@ class Translate extends Component {
       const response = await savePhrase.json();
       this.setState({
         translation: "Translating..."
-      })
+      });
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -84,44 +89,22 @@ class Translate extends Component {
   };
   render() {
     const { translation } = this.state;
-    
+
     // onchange this.setstate to api key inputs
     return (
       <>
-        {/* <Slider>
-          <Slide image={<img />}>
-            <Caption>
-              <h3>This is our big Tagline!</h3>
-              <h5 className="light grey-text text-lighten-3">
-                Here's our small slogan.
-              </h5>
-            </Caption>
-          </Slide>
-          <Slide image={<img />}>
+        <Slider style={{ marginBottom: "2rem" }}>
+          <Slide image={<img src={img2} alt="image2" className="img2" />}>
             <Caption placement="left">
-              <h3>Left Aligned Caption</h3>
+              <h3 style={{ fontWeight: "bold" }}>This is LingoConnect!</h3>
               <h5 className="light grey-text text-lighten-3">
-                Here's our small slogan.
+                Translate in over 100 languages. <br />
               </h5>
             </Caption>
           </Slide>
-          <Slide image={<img />}>
-            <Caption placement="right">
-              <h3>Right Aligned Caption</h3>
-              <h5 className="light grey-text text-lighten-3">
-                Here's our small slogan.
-              </h5>
-            </Caption>
-          </Slide>
-          <Slide image={<img />}>
-            <Caption>
-              <h3>This is our big Tagline!</h3>
-              <h5 className="light grey-text text-lighten-3">
-                Here's our small slogan.
-              </h5>
-            </Caption>
-          </Slide>
-        </Slider> */}
+          <Slide image={<img src={img3} alt="img3" />} />
+          <Slide image={<img src={img4} alt="image4" />} />
+        </Slider>
         {!this.props.currentUser && (
           <h5 style={{ textAlign: "center" }}>
             {" "}
@@ -375,7 +358,7 @@ class Translate extends Component {
         </form>
         <div className="row">
           <h5 style={{ textAlign: "center" }}>Creators</h5>
-          <div className="col s5" style={{ textAlign: "center" }}>
+          <div className="col s12 l5" style={{ textAlign: "center" }}>
             <h6>Joshua Ablan</h6>
             <a style={{ paddingRight: "0.5rem" }}>
               <i class="fab fa-linkedin fa-2x" />
@@ -384,7 +367,7 @@ class Translate extends Component {
               <i class="fab fa-github-square fa-2x" />
             </a>
           </div>
-          <div className="col s5" style={{ textAlign: "center" }}>
+          <div className="col s12 l5" style={{ textAlign: "center" }}>
             <h6>John Lwin</h6>
             <a style={{ paddingRight: "0.5rem" }}>
               <i class="fab fa-linkedin fa-2x" />
