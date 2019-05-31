@@ -4,11 +4,8 @@
 
 
 ## LingoConnect
-
 LingoConnect is your go to translator with over 100 languages. Save the phrases on the go in your own account.
 The translations are powered by [Yandex.Translate](http://translate.yandex.com/)
-LingoConnect is your go to translator with over 100 languages. The translations are powered by [Yandex.Translate](http://translate.yandex.com/)
-
 
 
 ## Planning & Wireframes
@@ -31,33 +28,18 @@ The goal was a simple design with an emphasis on functionality. The user should 
 
 
 ## Technologies used:
-<<<<<<< HEAD
 * JavascriptES6
 * React.JS
 * Python
 * Flask
 * HTML5
-=======
-* Javascript
-* React.js
-* Python
-* Flask
-* HTML
->>>>>>> cf2f2218e42e5571feae63b5a438bd1426ff1128
 * Materialize
 * CSS3
 * Postgres
 * Postman
 * SQLite
-<<<<<<< HEAD
 * FontAwesome
 * Google Fonts
 * Trello
 * Sketch
 * Photoshop
-=======
-* Trello
-* Sketch
-* Photoshop
-
->>>>>>> cf2f2218e42e5571feae63b5a438bd1426ff1128
