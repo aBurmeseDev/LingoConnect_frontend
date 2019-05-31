@@ -40,23 +40,44 @@ body {
 main {
   flex: 1 0 auto;
   min-height: 100vh;
+
+}
+a {
+  color: #002575;
 }
 /* Nav */
 nav {
-  background-color: #133062;
+  background-color: #b10000;
 }
-
+/* Slider */
+.slider {
+  margin-bottom: 3rem;
+}
+.indicator-item.active {
+  background-color: #b10000 !important;
+}
+.caption {
+  width: auto;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  padding-bottom: 3rem;
+  background-color: rgba(7, 7, 7, 0.5);
+}
 /* Search input */
 #translateForm {
-  background-color: rgba(200, 200, 200, 0.5);
+  background-color: rgba(160, 160, 160, 0.5);
   padding: 0.01rem;
   /* margin-bottom: 7rem; */
   min-height: 80vh;
+
+  margin-bottom: 5rem;
+
 }
+
 input {
   display: block;
   text-align: center;
-  /* border-bottom-color: rgb(255, 255, 255) !important; */
+  border-bottom-color: rgb(31, 31, 31) !important;
 }
 TextInput {
   display: block !important;
@@ -67,15 +88,18 @@ label {
   display: block;
   text-align: center;
   line-height: 100%;
-  color: #959595;
+  color: #2b2b2b;
+
 }
 ::placeholder {
-  color: #444444;
+  color: #757575;
 }
 button {
   display: block !important;
   margin: auto !important;
-  background-color: #133062 !important;
+
+  background-color: #b10000 !important;
+
 }
 
 .dropdown-content li span {
@@ -83,7 +107,7 @@ button {
 }
 /* footer */
 footer {
-  background-color: #133062 !important;
+  background-color: #b10000 !important;
 }
 
 /* User page */
@@ -92,9 +116,30 @@ footer {
   margin: 0 auto;
 }
 
+
+/* Modals  */
 .modal {
-  width: 40%;
-  border-radius: 5%;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  /* background-color: rgb(0, 0, 0); */
+
+  border-radius: 2%;
+  
+}
+@media screen and (min-width: 1171px) {
+  .modal {
+    width: 30%;
+  }
+  .img2 {
+    background-size: auto !important;
+  }
+  .caption {
+    width: 40% !important;
+  }
+}
+.modal-overlay {
+  background-color: #b10000;
+}
+.btn-flat {
+  display: none !important;
+}
+.login {
+  margin-top: 1.5rem !important;
 }
