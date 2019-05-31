@@ -40,21 +40,20 @@ body {
 main {
   flex: 1 0 auto;
   min-height: 100vh;
-
 }
 a {
-  color: #002575;
+  color: #529dff;
 }
 /* Nav */
 nav {
-  background-color: #b10000;
+  background-color: #9b0000;
 }
 /* Slider */
 .slider {
   margin-bottom: 3rem;
 }
 .indicator-item.active {
-  background-color: #b10000 !important;
+  background-color: #9b0000 !important;
 }
 .caption {
   width: auto;
@@ -65,13 +64,12 @@ nav {
 }
 /* Search input */
 #translateForm {
-  background-color: rgba(160, 160, 160, 0.5);
+  background-color: rgba(202, 202, 202, 0.5);
   padding: 0.01rem;
   /* margin-bottom: 7rem; */
   min-height: 80vh;
 
   margin-bottom: 5rem;
-
 }
 
 input {
@@ -89,7 +87,6 @@ label {
   text-align: center;
   line-height: 100%;
   color: #2b2b2b;
-
 }
 ::placeholder {
   color: #757575;
@@ -98,8 +95,7 @@ button {
   display: block !important;
   margin: auto !important;
 
-  background-color: #b10000 !important;
-
+  background-color: #9b0000 !important;
 }
 
 .dropdown-content li span {
@@ -107,7 +103,7 @@ button {
 }
 /* footer */
 footer {
-  background-color: #b10000 !important;
+  background-color: #9b0000 !important;
 }
 
 /* User page */
@@ -116,12 +112,9 @@ footer {
   margin: 0 auto;
 }
 
-
 /* Modals  */
 .modal {
-
   border-radius: 2%;
-  
 }
 @media screen and (min-width: 1171px) {
   .modal {
@@ -135,7 +128,7 @@ footer {
   }
 }
 .modal-overlay {
-  background-color: #b10000;
+  background-color: #141414;
 }
 .btn-flat {
   display: none !important;

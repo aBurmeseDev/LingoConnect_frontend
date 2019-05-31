@@ -23,6 +23,7 @@ class Register extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <h6 style={{ textAlign: "center" }}>Welcome new friend!</h6>
         <label>
           username:
           <input

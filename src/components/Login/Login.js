@@ -18,7 +18,7 @@ class Login extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h6 style={{ textAlign: "center" }}>Welcome back.</h6>
+        <h6 style={{ textAlign: "center" }}>Welcome back!</h6>
         <label>
           username:
           <input
