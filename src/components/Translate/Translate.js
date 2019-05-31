@@ -10,11 +10,13 @@ import {
   Slider,
   Caption
 } from "react-materialize";
+
 import img1 from "../resources/hello-gif.gif";
 import img2 from "../resources/hello-gif1.jpg";
 import img3 from "../resources/hello-gif3.gif";
 import img4 from "../resources/hello-gif4.gif";
 import globe from "../resources/globe-lan.jpg";
+
 
 class Translate extends Component {
   state = {
@@ -358,7 +360,9 @@ class Translate extends Component {
         </form>
         <div className="row">
           <h5 style={{ textAlign: "center" }}>Creators</h5>
+
           <div className="col s12 l5" style={{ textAlign: "center" }}>
+
             <h6>Joshua Ablan</h6>
             <a style={{ paddingRight: "0.5rem" }}>
               <i class="fab fa-linkedin fa-2x" />
@@ -367,7 +371,9 @@ class Translate extends Component {
               <i class="fab fa-github-square fa-2x" />
             </a>
           </div>
+
           <div className="col s12 l5" style={{ textAlign: "center" }}>
+
             <h6>John Lwin</h6>
             <a style={{ paddingRight: "0.5rem" }}>
               <i class="fab fa-linkedin fa-2x" />

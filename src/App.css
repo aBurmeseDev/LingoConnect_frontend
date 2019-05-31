@@ -40,6 +40,7 @@ body {
 main {
   flex: 1 0 auto;
   min-height: 100vh;
+
 }
 a {
   color: #002575;
@@ -68,7 +69,9 @@ nav {
   padding: 0.01rem;
   /* margin-bottom: 7rem; */
   min-height: 80vh;
+
   margin-bottom: 5rem;
+
 }
 
 input {
@@ -86,6 +89,7 @@ label {
   text-align: center;
   line-height: 100%;
   color: #2b2b2b;
+
 }
 ::placeholder {
   color: #757575;
@@ -93,7 +97,9 @@ label {
 button {
   display: block !important;
   margin: auto !important;
+
   background-color: #b10000 !important;
+
 }
 
 .dropdown-content li span {
@@ -110,12 +116,12 @@ footer {
   margin: 0 auto;
 }
 
+
 /* Modals  */
 .modal {
-  /* width: 30%; */
+
   border-radius: 2%;
-  /* box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75); */
-  /* background-color: rgb(0, 0, 0); */
+  
 }
 @media screen and (min-width: 1171px) {
   .modal {
