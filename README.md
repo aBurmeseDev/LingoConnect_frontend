@@ -4,10 +4,9 @@
 
 
 ## LingoConnect
-<<<<<<< HEAD
+
 LingoConnect is your go to translator with over 100 languages. Save the phrases on the go in your own account.
 The translations are powered by [Yandex.Translate](http://translate.yandex.com/)
-=======
 LingoConnect is your go to translator with over 100 languages. The translations are powered by [Yandex.Translate](http://translate.yandex.com/)
 >>>>>>> cf2f2218e42e5571feae63b5a438bd1426ff1128
 
