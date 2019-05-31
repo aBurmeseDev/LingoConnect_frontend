@@ -83,7 +83,8 @@ class User extends Component {
   render() {
     const { data, username, email, password } = this.state;
     const { currentUser } = this.props
-    console.log(this.state)
+    console.log(this.props.currentUser, "currentstate")
+    console.log(this.state, "user state")
     return (
       <>
         <div className="user-info">
