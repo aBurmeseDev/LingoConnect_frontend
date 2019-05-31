@@ -343,7 +343,7 @@ class Translate extends Component {
           </Button>
           <Modal id="modal3">
             <h3 style={{ textAlign: "center" }}>{translation}</h3>
-            {this.props.currentUser && translation !== "Translating..." ? (
+            {this.props.currentUser.username && translation !== "Translating..." ? (
               <Button
                 onClick={() => this.handleSavePhrase(this.state)}
                 className="modal-close"
@@ -360,11 +360,14 @@ class Translate extends Component {
 
           <div className="col s12 l6" style={{ textAlign: "center" }}>
             <h6>Joshua Ablan</h6>
-            <a style={{ paddingRight: "0.5rem" }}>
-              <i class="fab fa-linkedin fa-2x" />
+            <a 
+              style={{ paddingRight: "0.5rem" }}
+              href="https://www.linkedin.com/in/joshablan/"
+              >
+              <i className="fab fa-linkedin fa-2x" />
             </a>
-            <a>
-              <i class="fab fa-github-square fa-2x" />
+            <a href="https://github.com/jablan08">
+              <i className="fab fa-github-square fa-2x" />
             </a>
           </div>
 
@@ -377,10 +380,10 @@ class Translate extends Component {
               href="https://www.linkedin.com/in/john-lwin/"
               style={{ paddingRight: "0.5rem" }}
             >
-              <i class="fab fa-linkedin fa-2x" />
+              <i className="fab fa-linkedin fa-2x" />
             </a>
             <a href="https://github.com/aBurmeseDev">
-              <i class="fab fa-github-square fa-2x" />
+              <i className="fab fa-github-square fa-2x" />
             </a>
           </div>
         </div>

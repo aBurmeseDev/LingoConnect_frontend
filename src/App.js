@@ -61,8 +61,8 @@ class App extends Component {
         }
       });
       const response = await logout.json();
-      this.props.history.push(routes.ROOT);
       localStorage.clear();
+      this.props.history.push(routes.ROOT);
       this.setState({
         currentUser: {},
         logged: response.logged,
