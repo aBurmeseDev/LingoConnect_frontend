@@ -26,12 +26,10 @@ class Translate extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   };
   handleSavePhrase = async data => {
     const { currentUser } = this.props;
     const { text, translation, setLanguage, transLanguage } = this.state;
-    console.log(data);
     let obj = {
       userId: currentUser.id,
       text: text,
@@ -48,11 +46,11 @@ class Translate extends Component {
           "Content-Type": "application/json"
         }
       });
-      const response = await savePhrase.json();
+      await savePhrase.json();
+
       this.setState({
         translation: "Translating..."
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +71,6 @@ class Translate extends Component {
         }
       );
       const translateJson = await translate.json();
-      console.log(translateJson);
       this.setState({
         translation: translateJson.text[0]
       });
@@ -84,12 +81,9 @@ class Translate extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     this.getTranslation();
-    // add close modal function
   };
   render() {
     const { translation } = this.state;
-
-    // onchange this.setstate to api key inputs
     return (
       <>
         <Slider style={{ marginBottom: "2rem" }}>
@@ -113,8 +107,6 @@ class Translate extends Component {
         <form onSubmit={this.handleSubmit} id="translateForm">
           <label>Choose your Language:</label>
           <Select
-            // label="Choose your Language"
-            // style={{ display: "block" }}
             name="setLanguage"
             onChange={this.handleChange}
           >
@@ -232,7 +224,6 @@ class Translate extends Component {
             <Select
               name="transLanguage"
               onChange={this.handleChange}
-              //   style={{ display: "block" }}
             >
               <option value="en" defaultValue="1">
                 English
@@ -330,7 +321,6 @@ class Translate extends Component {
               <option value="ja">Japanese</option>
             </Select>
             <br />
-            {/* Need to make into a drop down options like "en - English" so we can preset the language */}
           </label>
           <Button
             type="submit"
@@ -343,7 +333,7 @@ class Translate extends Component {
           </Button>
           <Modal id="modal3">
             <h3 style={{ textAlign: "center" }}>{translation}</h3>
-            {this.props.currentUser && translation !== "Translating..." ? (
+            {this.props.currentUser.username && translation !== "Translating..." ? (
               <Button
                 onClick={() => this.handleSavePhrase(this.state)}
                 className="modal-close"
@@ -360,11 +350,14 @@ class Translate extends Component {
 
           <div className="col s12 l6" style={{ textAlign: "center" }}>
             <h6>Joshua Ablan</h6>
-            <a style={{ paddingRight: "0.5rem" }}>
-              <i class="fab fa-linkedin fa-2x" />
+            <a 
+              style={{ paddingRight: "0.5rem" }}
+              href="https://www.linkedin.com/in/joshablan/"
+              >
+              <i className="fab fa-linkedin fa-2x" />
             </a>
-            <a>
-              <i class="fab fa-github-square fa-2x" />
+            <a href="https://github.com/jablan08">
+              <i className="fab fa-github-square fa-2x" />
             </a>
           </div>
 
@@ -377,10 +370,10 @@ class Translate extends Component {
               href="https://www.linkedin.com/in/john-lwin/"
               style={{ paddingRight: "0.5rem" }}
             >
-              <i class="fab fa-linkedin fa-2x" />
+              <i className="fab fa-linkedin fa-2x" />
             </a>
             <a href="https://github.com/aBurmeseDev">
-              <i class="fab fa-github-square fa-2x" />
+              <i className="fab fa-github-square fa-2x" />
             </a>
           </div>
         </div>

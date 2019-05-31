@@ -45,7 +45,6 @@ class App extends Component {
       this.setState({
         currentUser: {}
       })
-      console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -61,8 +60,8 @@ class App extends Component {
         }
       });
       const response = await logout.json();
-      this.props.history.push(routes.ROOT);
       localStorage.clear();
+      this.props.history.push(routes.ROOT);
       this.setState({
         currentUser: {},
         logged: response.logged,
@@ -94,8 +93,6 @@ class App extends Component {
           logged: response.logged
         });
       }
-
-      console.log(response, "from the flask server on localhost:5000");
     } catch (err) {
       console.log(err);
     }
@@ -111,7 +108,6 @@ class App extends Component {
         }
       });
       const response = await loginCall.json();
-
       if (response.message === "success") {
         localStorage.setItem("user", JSON.stringify(response.user));
         this.setState({
@@ -123,8 +119,6 @@ class App extends Component {
           loginMessage: response.message
         });
       }
-      console.log(response.user);
-      console.log(response.logged, "from the flask server on localhost:5000");
     } catch (err) {
       console.log(err);
     }

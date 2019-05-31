@@ -26,7 +26,6 @@ class User extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.handleEdit(this.state);
-    // add close modal function
   };
   handleEdit = async () => {
     try {
@@ -42,7 +41,6 @@ class User extends Component {
         }
       );
       const response = await editUser.json();
-      console.log(response);
       this.props.setCurrentUser(response);
       this.setState({
         password: ""
@@ -57,7 +55,6 @@ class User extends Component {
         credentials: "include"
       });
       const response = await getPhrase.json();
-      console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -73,7 +70,6 @@ class User extends Component {
       this.setState({
         data: this.state.data.filter(d => d.id !== id)
       });
-      console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -83,12 +79,9 @@ class User extends Component {
   render() {
     const { data, username, email, password } = this.state;
     const { currentUser } = this.props;
-    console.log(this.props.currentUser, "currentstate");
-    console.log(this.state, "user state");
     return (
       <>
         <div className="user-info">
-          {/* <h5 style={{ textAlign: "center" }}>Edit Account</h5> */}
           <h5 style={{ textAlign: "center" }}>
             {currentUser && currentUser.username}
           </h5>
@@ -106,7 +99,6 @@ class User extends Component {
               type="text"
               name="username"
               value={username}
-              // placeholder={currentUser.username}
               autoComplete="off"
               onChange={this.handleChange}
             />
@@ -125,7 +117,6 @@ class User extends Component {
               type="email"
               name="email"
               value={email}
-              // placeholder={currentUser.email}
               onChange={this.handleChange}
               autoComplete="off"
             />

@@ -152,3 +152,8 @@ footer {
 .login {
   margin-top: 1.5rem !important;
 }
+.select-wrapper {
+  width: 40%;
+  margin: 0 auto;
+
+}
