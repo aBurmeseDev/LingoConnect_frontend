@@ -28,6 +28,11 @@ class App extends Component {
       });
     }
   }
+  setCurrentUser = (user) => {
+    this.setState({
+      currentUser: user
+    })
+  }
   handleDeleteUser = async id => {
     try {
       const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
@@ -124,31 +129,7 @@ class App extends Component {
       console.log(err);
     }
   };
-  // handleSavePhrase = async data => {
-  //   const { currentUser } = this.state;
-  //   console.log(data);
-  //   let obj = {
-  //     userId: currentUser.id,
-  //     text: data.text,
-  //     phrase: data.translation,
-  //     setLanguage: data.setLanguage,
-  //     transLanguage: data.transLanguage
-  //   };
-  //   try {
-  //     const savePhrase = await fetch("http://localhost:5000/phrases/create", {
-  //       method: "POST",
-  //       body: JSON.stringify(obj),
-  //       credentials: "include",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     });
-  //     const response = await savePhrase.json();
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  
   render() {
     const { showModal, loginMessage, currentUser } = this.state;
     return (
@@ -194,7 +175,7 @@ class App extends Component {
             <Route
               exact
               path={`${routes.USER}/:id`}
-              render={() => <User currentUser={currentUser} handleDeleteUser={this.handleDeleteUser}/>}
+              render={() => <User currentUser={currentUser} setCurrentUser={this.setCurrentUser} handleDeleteUser={this.handleDeleteUser}/>}
             />
           </Switch>
         </main>
