@@ -58,7 +58,7 @@ class Register extends Component {
         <label>
           Password:
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="secure with password!"
             onChange={this.handleChange}
@@ -68,7 +68,7 @@ class Register extends Component {
         <label>
           Verify Password:
           <input
-            type="text"
+            type="word"
             name="verify_password"
             placeholder="password, one more time!"
             onChange={this.handleChange}
