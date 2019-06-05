@@ -38,7 +38,7 @@ class Translate extends Component {
       transLanguage: transLanguage
     };
     try {
-      const savePhrase = await fetch("http://localhost:5000/phrases/create", {
+      const savePhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/create`, {
         method: "POST",
         body: JSON.stringify(obj),
         credentials: "include",

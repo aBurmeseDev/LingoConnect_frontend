@@ -35,7 +35,7 @@ class App extends Component {
   }
   handleDeleteUser = async id => {
     try {
-      const deleteUser = await fetch(`http://localhost:5000/users/${id}`, {
+      const deleteUser = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -52,7 +52,7 @@ class App extends Component {
   };
   doLogout = async () => {
     try {
-      const logout = await fetch("http://localhost:5000/users/logout", {
+      const logout = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/logout`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -75,7 +75,7 @@ class App extends Component {
   handleRegister = async data => {
     try {
       const registerCall = await fetch(
-        "http://localhost:5000/users/registration",
+        `${process.env.REACT_APP_BACKEND_URL}/users/registration`,
         {
           method: "POST",
           body: JSON.stringify(data),
@@ -99,7 +99,7 @@ class App extends Component {
   };
   handleLogin = async data => {
     try {
-      const loginCall = await fetch("http://localhost:5000/users/login", {
+      const loginCall = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
         method: "POST",
         body: JSON.stringify(data),
         credentials: "include",
