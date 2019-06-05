@@ -11,7 +11,6 @@ import AppNavBar from "./components/AppNavbar/AppNavbar";
 
 import * as routes from "./components/constants/routes";
 
-console.log(process.env)
 class App extends Component {
   state = {
     loginMessage: null,
