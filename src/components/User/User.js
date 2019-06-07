@@ -62,7 +62,7 @@ class User extends Component {
   };
   handleDeletePhrase = async id => {
     try {
-      const deletePhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}phrases/${id}`, {
+      const deletePhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/${id}`, {
         method: "DELETE",
         credentials: "include"
       });
