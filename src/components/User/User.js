@@ -99,7 +99,6 @@ class User extends Component {
               type="text"
               name="username"
               placeholder={currentUser.username}
-              value={username}
               autoComplete="off"
               onChange={this.handleChange}
             />
@@ -116,7 +115,6 @@ class User extends Component {
             <input
               type="email"
               name="email"
-              value={email}
               placeholder={this.props.currentUser.email}
               onChange={this.handleChange}
               autoComplete="off"
