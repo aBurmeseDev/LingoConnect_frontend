@@ -30,7 +30,7 @@ class User extends Component {
   handleEdit = async () => {
     try {
       const editUser = await fetch(
-        `http://localhost:5000/users/${this.props.currentUser.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/${this.props.currentUser.id}`,
         {
           method: "PUT",
           body: JSON.stringify(this.state),
@@ -51,7 +51,7 @@ class User extends Component {
   };
   handleGetPhrase = async () => {
     try {
-      const getPhrase = await fetch("http://localhost:5000/phrases/create", {
+      const getPhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/create`, {
         credentials: "include"
       });
       const response = await getPhrase.json();
@@ -62,7 +62,7 @@ class User extends Component {
   };
   handleDeletePhrase = async id => {
     try {
-      const deletePhrase = await fetch(`http://localhost:5000/phrases/${id}`, {
+      const deletePhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}phrases/${id}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -77,7 +77,7 @@ class User extends Component {
   };
 
   render() {
-    const { data} = this.state;
+    const { email, username} = this.state;
     const { currentUser } = this.props;
     return (
       <>
@@ -98,8 +98,8 @@ class User extends Component {
             <input
               type="text"
               name="username"
-              placeholder="new username"
-              value={this.props.currentUser.username}
+              placeholder={currentUser.username}
+              value={this.username}
               autoComplete="off"
               onChange={this.handleChange}
             />
@@ -116,8 +116,8 @@ class User extends Component {
             <input
               type="email"
               name="email"
-              value={this.props.currentUser.email}
-              placeholder="new email"
+              value={email}
+              placeholder={this.props.currentUser.email}
               onChange={this.handleChange}
               autoComplete="off"
             />
