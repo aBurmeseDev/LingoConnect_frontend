@@ -6,8 +6,8 @@ import { Button, Modal } from "react-materialize";
 class User extends Component {
   state = {
     data: null,
-    username: this.props.currentUser.username,
-    email: this.props.currentUser.email,
+    username: "",
+    email: "",
     password: ""
   };
   componentDidMount() {
@@ -30,7 +30,7 @@ class User extends Component {
   handleEdit = async () => {
     try {
       const editUser = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/users/${this.props.currentUser.id}`,
+        `http://localhost:5000/users/${this.props.currentUser.id}`,
         {
           method: "PUT",
           body: JSON.stringify(this.state),
@@ -51,7 +51,7 @@ class User extends Component {
   };
   handleGetPhrase = async () => {
     try {
-      const getPhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/create`, {
+      const getPhrase = await fetch("http://localhost:5000/phrases/create", {
         credentials: "include"
       });
       const response = await getPhrase.json();
@@ -62,7 +62,7 @@ class User extends Component {
   };
   handleDeletePhrase = async id => {
     try {
-      const deletePhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/${id}`, {
+      const deletePhrase = await fetch(`http://localhost:5000/phrases/${id}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -77,7 +77,7 @@ class User extends Component {
   };
 
   render() {
-    const { data, username, email, password } = this.state;
+    const { data} = this.state;
     const { currentUser } = this.props;
     return (
       <>
@@ -98,7 +98,8 @@ class User extends Component {
             <input
               type="text"
               name="username"
-              value={username}
+              placeholder="new username"
+              value={this.props.currentUser.username}
               autoComplete="off"
               onChange={this.handleChange}
             />
@@ -107,7 +108,6 @@ class User extends Component {
             <input
               type="password"
               name="password"
-              value={password}
               placeholder="new password"
               onChange={this.handleChange}
               autoComplete="off"
@@ -116,7 +116,8 @@ class User extends Component {
             <input
               type="email"
               name="email"
-              value={email}
+              value={this.props.currentUser.email}
+              placeholder="new email"
               onChange={this.handleChange}
               autoComplete="off"
             />
