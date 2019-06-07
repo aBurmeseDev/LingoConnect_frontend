@@ -28,12 +28,19 @@ class User extends Component {
     this.handleEdit(this.state);
   };
   handleEdit = async () => {
+    const { currentUser } = this.props
+    const { email, username, password } = this.state
+    const obj = {
+        email: email === "" ? currentUser.email : email,
+        username: username === "" ? currentUser.username : username,
+        password
+    }
     try {
       const editUser = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/users/${this.props.currentUser.id}`,
         {
           method: "PUT",
-          body: JSON.stringify(this.state),
+          body: JSON.stringify(obj),
           credentials: "include",
           headers: {
             "Content-Type": "application/json"
@@ -99,6 +106,7 @@ class User extends Component {
               type="text"
               name="username"
               placeholder={currentUser.username}
+              value={username}
               autoComplete="off"
               onChange={this.handleChange}
             />
@@ -115,8 +123,9 @@ class User extends Component {
             <input
               type="email"
               name="email"
-              placeholder={this.props.currentUser.email}
+              placeholder={currentUser.email}
               onChange={this.handleChange}
+              value={email}
               autoComplete="off"
             />
             <br />
