@@ -482,7 +482,7 @@ class Translate extends Component {
           >
             {
               languages.map((l,i)=>
-                <option value={l.value}>{l.name}</option> 
+                <option value={l.value} key={i}>{l.name}</option> 
               )
             }
             
@@ -509,7 +509,7 @@ class Translate extends Component {
             >
               {
               languages.map((l,i)=>
-                <option value={l.value}>{l.name}</option> 
+                <option value={l.value} key={i}>{l.name}</option> 
               )
               }
             </Select>
