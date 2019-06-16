@@ -126,6 +126,7 @@ class App extends Component {
   
   render() {
     const { showModal, loginMessage, currentUser } = this.state;
+    console.log(process.env.REACT_APP_BACKEND_URL)
     return (
       <div className="App">
         <header />
