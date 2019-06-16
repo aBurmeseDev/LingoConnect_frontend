@@ -15,6 +15,376 @@ import img2 from "../resources/hello-gif1.jpg";
 import img3 from "../resources/hello-gif3.gif";
 import img4 from "../resources/hello-gif4.gif";
 
+const languages = [
+  {
+    value: "en",
+    name: "English"
+  },
+  {
+    value: "az",
+    name: "Azerbaijan"
+  },
+  {
+    value: "sq",
+    name: "Albanian"
+  },
+  {
+    value: "am",
+    name: "Amharic"
+  },
+  {
+    value: "ar",
+    name: "Arabic"
+  },
+  {
+    value: "hy",
+    name: "Armenian"
+  },
+  {
+    value: "af",
+    name: "Afrikaans"
+  },
+  {
+    value: "eu",
+    name: "Basque"
+  },
+  {
+    value: "ba",
+    name: "Bashkir"
+  },
+  {
+    value: "be",
+    name: "Belarusian"
+  },
+  {
+    value: "bn",
+    name: "Bengali"
+  },
+  {
+    value: "my",
+    name: "Burmese"
+  },
+  {
+    value: "bg",
+    name: "Bulgarian"
+  },
+  {
+    value: "bs",
+    name: "Bosnian"
+  },
+  {
+    value: "cy",
+    name: "Welsh"
+  },
+  {
+    value: "hu",
+    name: "Hungarian"
+  },
+  {
+    value: "vi",
+    name: "Vietnamese"
+  },
+  {
+    value: "ht",
+    name: "Haitian(Creole)"
+  },
+  {
+    value: "gl",
+    name: "Galician"
+  },
+  {
+    value: "nl",
+    name: "Dutch"
+  },
+  {
+    value: "mrj",
+    name: "Hill Mari"
+  },
+  {
+    value: "el",
+    name: "Greek"
+  },
+  {
+    value: "ka",
+    name: "Georgian"
+  },
+  {
+    value: "gu",
+    name: "Gujarati"
+  },
+  {
+    value: "da",
+    name: "Danish"
+  },
+  {
+    value: "he",
+    name: "Hebrew"
+  },
+  {
+    value: "yi",
+    name: "Yiddish"
+  },
+  {
+    value: "id",
+    name: "Indonesian"
+  },
+  {
+    value: "ga",
+    name: "Irish"
+  },
+  {
+    value: "it",
+    name: "Italian"
+  },
+  {
+    value: "is",
+    name: "Icelandic"
+  },
+  {
+    value: "es",
+    name: "Spanish"
+  },
+  {
+    value: "kk",
+    name: "Kazakh"
+  },
+  {
+    value: "kn",
+    name: "Kannada"
+  },
+  {
+    value: "ca",
+    name: "Catalan"
+  },
+  {
+    value: "ky",
+    name: "Kyrgyz"
+  },
+  {
+    value: "zh",
+    name: "Chinese"
+  },
+  {
+    value: "ko",
+    name: "Korean"
+  },
+  {
+    value: "xh",
+    name: "Xhosa"
+  },
+  {
+    value: "km",
+    name: "Khmer"
+  },
+  {
+    value: "lo",
+    name: "Laotian"
+  },
+  {
+    value: "lv",
+    name: "Latvian"
+  },
+  {
+    value: "lt",
+    name: "Lithuanian"
+  },
+  {
+    value: "la",
+    name: "Latin"
+  },
+  {
+    value: "lb",
+    name: "Luxembourgish"
+  },
+  {
+    value: "mg",
+    name: "Malagasy"
+  },
+  {
+    value: "ms",
+    name: "Malay"
+  },
+  {
+    value: "ml",
+    name: "Malayalam"
+  },
+  {
+    value: "mt",
+    name: "Maltese"
+  },
+  {
+    value: "mk",
+    name: "Macedonian"
+  },
+  {
+    value: "mi",
+    name: "Maori"
+  },
+  {
+    value: "mr",
+    name: "Marathi"
+  },
+  {
+    value: "mhr",
+    name: "Mari"
+  },
+  {
+    value: "mn",
+    name: "Mongolian"
+  },
+  {
+    value: "de",
+    name: "German"
+  },
+  {
+    value: "ne",
+    name: "Nepali"
+  },
+  {
+    value: "no",
+    name: "Norwegian"
+  },
+  {
+    value: "pa",
+    name: "Punjabi"
+  },
+  {
+    value: "pap",
+    name: "Papiamento"
+  },
+  {
+    value: "fa",
+    name: "Persian"
+  },
+  {
+    value: "pl",
+    name: "Polish"
+  },
+  {
+    value: "pt",
+    name: "Portuguese"
+  },
+  {
+    value: "ro",
+    name: "Romanian"
+  },
+  {
+    value: "ru",
+    name: "Russian"
+  },
+  {
+    value: "ceb",
+    name: "Cebuano"
+  },
+  {
+    value: "sr",
+    name: "Serbian"
+  },
+  {
+    value: "si",
+    name: "Sinhala"
+  },
+  {
+    value: "sk",
+    name: "Slovenian"
+  },
+  {
+    value: "sw",
+    name: "Swahili"
+  },
+  {
+    value: "su",
+    name: "Sundanese"
+  },
+  {
+    value: "tg",
+    name: "Tajik"
+  },
+  {
+    value: "th",
+    name: "Thai"
+  },
+  {
+    value: "tl",
+    name: "Tagalog"
+  },
+  {
+    value: "ta",
+    name: "Tamil"
+  },
+  {
+    value: "tt",
+    name: "Tatar"
+  },
+  {
+    value: "te",
+    name: "Telugu"
+  },
+  {
+    value: "tr",
+    name: "Turkish"
+  },
+  {
+    value: "udm",
+    name: "Udmurt"
+  },
+  {
+    value: "uz",
+    name: "Uzbek"
+  },
+  {
+    value: "uk",
+    name: "Ukrainian"
+  },
+  {
+    value: "ur",
+    name: "Urdu"
+  },
+  {
+    value: "fi",
+    name: "Finnish"
+  },
+  {
+    value: "fr",
+    name: "French"
+  },
+  {
+    value: "hi",
+    name: "Hindi"
+  },
+  {
+    value: "hr",
+    name: "Croatian"
+  },
+  {
+    value: "cs",
+    name: "Czech"
+  },
+  {
+    value: "sv",
+    name: "Swedish"
+  },
+  {
+    value: "gd",
+    name: "Scottish"
+  },
+  {
+    value: "et",
+    name: "Estonian"
+  },
+  {
+    value: "eo",
+    name: "Esperanto"
+  },
+  {
+    value: "jv",
+    name: "Javanese"
+  },
+  {
+    value: "ja",
+    name: "Japanese"
+  },
+]
 class Translate extends Component {
   state = {
     text: "",
