@@ -84,7 +84,7 @@ class User extends Component {
   };
 
   render() {
-    const { email, username, data} = this.state;
+    const { data} = this.state;
     const { currentUser } = this.props;
     return (
       <>
@@ -105,8 +105,8 @@ class User extends Component {
             <input
               type="text"
               name="username"
-              placeholder={currentUser.username}
-              value={username}
+              placeholder="new username"
+              value={this.props.currentUser.username}
               autoComplete="off"
               onChange={this.handleChange}
             />
@@ -123,7 +123,8 @@ class User extends Component {
             <input
               type="email"
               name="email"
-              placeholder={currentUser.email}
+              value={this.props.currentUser.email}
+              placeholder="new email"
               onChange={this.handleChange}
               value={email}
               autoComplete="off"
