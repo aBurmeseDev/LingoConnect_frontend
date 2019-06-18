@@ -7,6 +7,8 @@
 LingoConnect is your go to translator with over 100 languages. Save the phrases on the go in your own account.
 The translations are powered by [Yandex.Translate](http://translate.yandex.com/)
 
+## Start Translating now! 
+[Project](https://lingoconnect.herokuapp.com/) deployed using Heroku.
 
 ## Planning & Wireframes
 

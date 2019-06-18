@@ -28,12 +28,19 @@ class User extends Component {
     this.handleEdit(this.state);
   };
   handleEdit = async () => {
+    const { currentUser } = this.props
+    const { email, username, password } = this.state
+    const obj = {
+        email: email === "" ? currentUser.email : email,
+        username: username === "" ? currentUser.username : username,
+        password
+    }
     try {
       const editUser = await fetch(
-        `http://localhost:5000/users/${this.props.currentUser.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/${this.props.currentUser.id}`,
         {
           method: "PUT",
-          body: JSON.stringify(this.state),
+          body: JSON.stringify(obj),
           credentials: "include",
           headers: {
             "Content-Type": "application/json"
@@ -51,7 +58,7 @@ class User extends Component {
   };
   handleGetPhrase = async () => {
     try {
-      const getPhrase = await fetch("http://localhost:5000/phrases/create", {
+      const getPhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/create`, {
         credentials: "include"
       });
       const response = await getPhrase.json();
@@ -62,7 +69,7 @@ class User extends Component {
   };
   handleDeletePhrase = async id => {
     try {
-      const deletePhrase = await fetch(`http://localhost:5000/phrases/${id}`, {
+      const deletePhrase = await fetch(`${process.env.REACT_APP_BACKEND_URL}/phrases/${id}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -119,6 +126,7 @@ class User extends Component {
               value={this.props.currentUser.email}
               placeholder="new email"
               onChange={this.handleChange}
+              value={email}
               autoComplete="off"
             />
             <br />
