@@ -45,3 +45,5 @@ The goal was a simple design with an emphasis on functionality. The user should 
 * Trello
 * Sketch
 * Photoshop
+
+### [Check out Backend Repo here!](https://github.com/aBurmeseDev/LingoConnect_backend)
