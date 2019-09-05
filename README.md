@@ -16,7 +16,7 @@ The translations are powered by [Yandex.Translate](http://translate.yandex.com/)
 
 
 ### Wireframes
-View our [wireframes](https://sketch.cloud/s/7AboP) here!
+View our wireframes [here!](https://sketch.cloud/s/7AboP)
 The goal was a simple design with an emphasis on functionality. The user should come to the page just with the intention of translating a word or phrase. 
 
 
