@@ -47,3 +47,6 @@ The goal was a simple design with an emphasis on functionality. The user should 
 * Photoshop
 
 ### [Check out Backend Repo here!](https://github.com/aBurmeseDev/LingoConnect_backend)
+
+### License
+This project is licensed under the MIT License
